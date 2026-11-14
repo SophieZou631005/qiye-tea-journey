@@ -35,12 +35,8 @@
     {name:'揉',label:'轻轻揉转',motion:'roll',text:'揉：通过揉转与施力，影响茶叶的形态。不同茶品对力度、时机与工序的要求并不相同。'},
     {name:'撒',label:'松手落叶',motion:'release',text:'撒：让芽叶松散落下。制茶讲究手法之间的配合，经验来自长期实践与师徒传授。'}
   ];
-  const roadPoints = [
-    {name:'蒙顶',x:12,y:71,title:'蒙顶山 · 从故乡出发',text:'七叶从茶山出发。这里保存着种茶传说与制茶传统，也是它的文化起点。'},
-    {name:'雅安',x:36,y:53,title:'雅安 · 茶的集散与往来',text:'雅安是川藏茶马古道的重要起点，茶业生产与商贸在这里留下了深厚的城市记忆。'},
-    {name:'康定',x:63,y:37,title:'康定 · 山地交流的节点',text:'川藏茶路经泸定到达康定，再向高原延伸。茶随不同支线流转，形成往来的路网。'},
-    {name:'拉萨',x:89,y:20,title:'拉萨 · 不同生活在茶中相遇',text:'古道连起不同地域与人群，茶进入日常，也延续交流。这里画出的是文化联系，不是精确地理路线。'}
-  ];
+  const roadPoints = content.roadStories;
+  let previousRoad = activeRoad;
   const moods = [{name:'独处',subtitle:'留一刻给自己',line:'今天，把片刻安静留给自己。'},{name:'相聚',subtitle:'与喜欢的人同坐',line:'见面吧，让一杯茶慢慢拉近距离。'},{name:'赠予',subtitle:'让心意抵达远方',line:'把山间的温柔，送给惦念的人。'}];
   function persist() { try { localStorage.setItem(STORAGE_KEY,JSON.stringify(state)); } catch { /* 存储不可用时仍可完成当前旅程。 */ } }
   function notify(text) { clearTimeout(toastTimer);$('#toast').textContent=text;$('#toast').classList.add('visible');toastTimer=setTimeout(()=>$('#toast').classList.remove('visible'),3200); }
@@ -56,7 +52,10 @@
     $('#chapter-tabs').innerHTML=content.chapters.map((chapter,i)=>`<button type="button" class="stop ${state.completed.includes(i)?'done':''}" role="tab" id="tab-${i}" aria-selected="${i===activeChapter}" aria-controls="chapter-panel" tabindex="${i===activeChapter?0:-1}" data-chapter="${i}"><span class="stop-orb">${chapter.number}</span><span class="stop-name">${chapter.name}</span><small>${chapter.eyebrow}</small></button>`).join('');
   }
   function activityHead(title, meta) { return `<div class="interaction-head"><span>${title}</span><span>${meta}</span></div>`; }
-  function activityBottom(status) { return `<div class="activity-bottom"><span>${status}</span>${activeChapter<4?'<button class="next-chapter" type="button" data-next>下一段茶路 ↗</button>':''}</div>`; }
+  function activityBottom(status) {
+    const next=content.chapters[activeChapter+1];
+    return `<div class="activity-bottom"><span>${status}</span>${next?`<button class="next-chapter" type="button" data-next><span><small>继续茶路 · ${next.number} / 05</small><strong>下一章 · ${next.name}</strong></span><b aria-hidden="true">→</b></button>`:''}</div>`;
+  }
   function cupIcon(type=0) {
     return `<svg viewBox="0 0 90 85" aria-hidden="true"><path d="M18 35h45l-6 30c-2 10-29 10-33 0Z" fill="${type===1?'#b9c8a1':'#d7dfc4'}" stroke="#8a9d76"/><path d="M63 40h9c17 0 7 22-12 18" fill="none" stroke="#8a9d76" stroke-width="3"/><ellipse cx="40" cy="35" rx="22" ry="5" fill="#c89b52" opacity=".7"/><path d="M30 25c-10-10 8-10 0-21M43 25c-10-10 8-10 0-21" stroke="#a9b492" fill="none"/>${type===1?'<path d="M3 54h18l-1 20H6Z" fill="#b9c8a1"/>':''}${type===2?'<path d="m63 13 11-6 9 6-9 6Z" fill="#c89b52"/><path d="M74 7v15" stroke="#b58c4e"/>':''}</svg>`;
   }
@@ -66,10 +65,10 @@
     const moment = content.cityMoments[Math.max(0, state.cityMoment)];
     const product = content.products.find(item => item.id === moment.productId);
     return `<div class="city-moment-options" role="group" aria-label="选择生活片刻">${content.cityMoments.map((item, index) => `<button type="button" data-city="${index}" aria-pressed="${state.cityMoment === index}">${item.name}</button>`).join('')}</div>
-      <figure class="city-photograph"><img src="${moment.image}" alt="${moment.alt}" width="1260" height="708" loading="lazy"><figcaption><span>${moment.type}</span><span>${moment.photoNote}</span></figcaption></figure>
+      <figure class="city-photograph ${moment.imageMode==='contain'?'is-design-board':''}"><img src="${moment.image}" alt="${moment.alt}" width="1260" height="708" loading="lazy"><figcaption><span>${moment.type}</span><span>${moment.photoNote}</span></figcaption></figure>
       <div class="city-moment-story" aria-live="polite"><p class="eyebrow">四川 · 雅安 / 在山与世界之间</p><h4>${moment.title}</h4><p>${moment.text}</p></div>
       <button type="button" class="city-tea-pair" data-product-open="${product.id}"><img src="${product.thumb}" alt="" width="128" height="72" loading="lazy"><span><small>让风景成为可带走的记忆 · 文创提案</small><strong>${product.title}</strong></span><b aria-hidden="true">↗</b></button>
-      <p class="mood-title">此刻，想与谁分享一杯茶？</p>`;
+      <p class="mood-title">这一杯，想留给谁？</p>`;
   }
 
   function basketSummary() {
@@ -86,10 +85,10 @@
   function activityMarkup() {
     const chapter=content.chapters[activeChapter];
     if(activeChapter===0)return `${activityHead('01 / 让七株记忆生长',gardenPhase===3?'七株记忆 · 已生根':`共同照料 ${gardenPhase} / 3`)}<p class="task">${chapter.task}</p>${window.QiyeDetails.gardenMarkup(gardenPhase)}${activityBottom(gardenPhase===3?'七株记忆，已在心里生根。':'让照料成为故事的一部分。')}`;
-    if(activeChapter===1)return `${activityHead('02 / 手心里的制茶智慧',`${state.craft.length} / 3`)}<p class="task">${chapter.task}</p><div class="craft-stage gesture-${activeCraft<0?'rest':craftSteps[activeCraft].motion}"><div class="tea-bowl ${activeCraft<0?'':`motion-${craftSteps[activeCraft].motion}`}" aria-hidden="true">${Array.from({length:8},(_,i)=>`<i style="--i:${i%5};--y:${i%3};--leaf:${i}"></i>`).join('')}</div>${window.QiyeDetails.craftHands(activeCraft)}<span class="craft-motion-note">${activeCraft===0?'合拢 · 托起 · 轻放':activeCraft===2?'松指 · 错落 · 舒展':activeCraft===1?'聚叶 · 揉转 · 松展':'以手为媒，让芽叶成为茶'}</span></div><div class="craft-controls">${craftSteps.map((step,i)=>`<button type="button" data-craft="${i}" aria-pressed="${activeCraft===i}" class="craft-button ${state.craft.includes(i)?'done':''} ${activeCraft===i?'active':''}">${step.name} · ${step.label}</button>`).join('')}</div><p class="craft-replay-hint">轻点任一手法，可再次观看动作。</p><p class="craft-info" aria-live="polite">${activeCraft<0?'从“捧”开始，看看每一种手法如何与芽叶相遇。':craftSteps[activeCraft].text}</p>${activityBottom(state.craft.length===3?'传承，在一双手与另一双手之间。':'体验三种手法，收集采制印记。')}`;
-    if(activeChapter===2)return `${activityHead('03 / 点亮一条交流之路',`${state.road.length} / 4`)}<p class="task">${chapter.task}</p><div class="road-stage"><svg viewBox="0 0 500 190" preserveAspectRatio="none" aria-hidden="true"><path d="M0 169 75 102 127 145 220 67 290 108 380 20 500 75V190H0Z" fill="#e9edde"/><path d="M0 185 127 131 235 159 341 84 500 112V190Z" fill="#dce4cf"/><path d="M60 135C101 77 123 160 180 101S245 45 315 70 382 25 445 38" stroke="#b59a70" stroke-width="2" stroke-dasharray="5 6" fill="none"/></svg>${roadPoints.map((point,i)=>`<button type="button" class="road-point ${activeRoad===i?'active':''} ${state.road.includes(i)?'done':''}" data-road="${i}" style="left:${point.x}%;top:${point.y}%" aria-label="了解${point.title}" aria-pressed="${activeRoad===i}">${point.name}</button>`).join('')}</div><div class="road-info" aria-live="polite">${activeRoad<0?'轻触山路上的节点，听茶叶讲述一次远行。':`<strong>${roadPoints[activeRoad].title}</strong><br>${roadPoints[activeRoad].text}`}</div>${activityBottom('文化叙事示意 · 非导航地图')}`;
+    if(activeChapter===1)return `${activityHead('02 / 手心里的制茶智慧',`${state.craft.length} / 3`)}<p class="task">${chapter.task}</p><div class="craft-stage gesture-${activeCraft<0?'rest':craftSteps[activeCraft].motion}"><div class="craft-tray" aria-hidden="true"></div><div class="tea-bowl ${activeCraft<0?'':`motion-${craftSteps[activeCraft].motion}`}" aria-hidden="true">${Array.from({length:8},(_,i)=>`<i style="--i:${i%5};--y:${i%3};--leaf:${i}"></i>`).join('')}</div>${window.QiyeDetails.craftHands(activeCraft)}<span class="craft-motion-note">${activeCraft===0?'合拢 · 托起 · 轻放':activeCraft===2?'松指 · 错落 · 舒展':activeCraft===1?'聚叶 · 揉转 · 松展':'以手为媒，让芽叶成为茶'}</span></div><div class="craft-controls">${craftSteps.map((step,i)=>`<button type="button" data-craft="${i}" aria-pressed="${activeCraft===i}" class="craft-button ${state.craft.includes(i)?'done':''} ${activeCraft===i?'active':''}">${step.name} · ${step.label}</button>`).join('')}</div><p class="craft-replay-hint">轻点任一手法，可再次观看动作。</p><p class="craft-info" aria-live="polite">${activeCraft<0?'从“捧”开始，看看每一种手法如何与芽叶相遇。':craftSteps[activeCraft].text}</p>${activityBottom(state.craft.length===3?'传承，在一双手与另一双手之间。':'体验三种手法，收集采制印记。')}`;
+    if(activeChapter===2)return `${activityHead('03 / 点亮一条交流之路',`${state.road.length} / 4`)}<p class="task">${chapter.task}</p>${window.QiyeAtlas.roadMarkup(activeRoad,state.road,previousRoad)}${activityBottom('沿着往来，读懂茶与人的联系。')}`;
     if(activeChapter===3)return `${activityHead('04 / 让茶回到日常',state.mood?'心境已收藏':'雅安 · 三个生活片刻')}<p class="task">${chapter.task}</p>${cityMarkup()}<div class="moment-options">${moods.map((mood,i)=>`<button type="button" class="moment ${state.mood===mood.name?'selected':''}" data-mood="${i}" aria-pressed="${state.mood===mood.name}">${cupIcon(i)}<strong>${mood.name}</strong><span>${mood.subtitle}</span></button>`).join('')}</div><p class="moment-note" aria-live="polite">${state.mood?moods.find(m=>m.name===state.mood).line:'在匆忙的一天里，为一杯茶留个位置。'}</p>${activityBottom('你的心境，将写入今日茶路卡。')}`;
-    return `${activityHead('05 / 留一张自己的茶路卡','QIYE POSTCARD')}<p class="task">${chapter.task}</p><div class="basket-summary" id="basket-summary">${basketSummary()}</div><form class="share-form" id="card-form"><label for="nickname">怎样称呼你？<input id="nickname" name="nickname" maxlength="14" placeholder="茶路旅人" autocomplete="nickname" value="${escapeHTML(state.nickname)}"></label><label for="message">想把哪句话带向远方？<textarea id="message" name="message" maxlength="70" placeholder="愿你走得再远，也有一杯温热的茶。">${escapeHTML(state.message)}</textarea></label><div class="form-row"><span class="mood-chip">今日心境 · ${state.mood||'从容'}</span><span class="quiet">已收集 ${state.completed.filter(i=>i!==4).length} / 4 段故事</span></div><button class="button primary" type="submit">生成我的茶路卡 <span>↗</span></button></form><p class="form-hint">可以随时生成；走完前四章，会留下完整的旅程印记。</p>`;
+    return `${activityHead('05 / 留一张自己的茶路卡','QIYE POSTCARD')}<p class="task">${chapter.task}</p><div class="basket-summary" id="basket-summary">${basketSummary()}</div><form class="share-form" id="card-form"><label for="nickname">怎样称呼你？<input id="nickname" name="nickname" maxlength="14" placeholder="茶路旅人" autocomplete="nickname" value="${escapeHTML(state.nickname)}"></label><label for="message">想把哪句话带向远方？<textarea id="message" name="message" maxlength="70" placeholder="愿你走得再远，也有一杯温热的茶。">${escapeHTML(state.message)}</textarea></label><div class="form-row"><span class="mood-chip">今日心境 · ${state.mood||'从容'}</span><span class="quiet">已收集 ${state.completed.filter(i=>i!==4).length} / 4 段故事</span></div><button class="button primary" type="submit">生成我的茶路卡 <span>↗</span></button></form><p class="form-hint">可以随时生成；走完前四章，会留下完整的旅程印记。</p><a class="journey-finish" href="#collection"><span><small>茶路之后 / 茶物展馆</small><strong>继续看看，可以带走的雅安记忆</strong></span><b aria-hidden="true">↓</b></a>`;
   }
   function renderChapter(focus=false) {
     renderTabs();
@@ -102,7 +101,7 @@
     requestAnimationFrame(()=>$('#chapter-panel').classList.add('chapter-enter'));
     if(focus)$('#chapter-panel').focus({preventScroll:true});
   }
-  function chooseChapter(index, scroll=false) { activeChapter=Math.max(0,Math.min(4,index));renderChapter();if(scroll)$('#journey').scrollIntoView({behavior:'smooth'}); }
+  function chooseChapter(index, scroll=false) { activeChapter=Math.max(0,Math.min(4,index));renderChapter();if(scroll)$('#journey').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'}); }
   function refreshActivity(focusSelector) {
     $('.interaction').innerHTML=activityMarkup();
     if(focusSelector){const el=$(focusSelector);if(el)el.focus({preventScroll:true});}
@@ -114,7 +113,7 @@
     if(button.hasAttribute('data-next')){chooseChapter(activeChapter+1);$('#chapter-panel').focus({preventScroll:true});$('#chapter-panel').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});return;}
     if(button.hasAttribute('data-garden-action')){advanceGarden();return;}
     if(button.hasAttribute('data-craft')){activeCraft=Number(button.dataset.craft);if(!state.craft.includes(activeCraft))state.craft.push(activeCraft);if(state.craft.length===3)complete(1);persist();refreshActivity(`[data-craft="${activeCraft}"]`);return;}
-    if(button.hasAttribute('data-road')){activeRoad=Number(button.dataset.road);if(!state.road.includes(activeRoad))state.road.push(activeRoad);if(state.road.length===4)complete(2);persist();refreshActivity(`[data-road="${activeRoad}"]`);return;}
+    if(button.hasAttribute('data-road')){previousRoad=activeRoad;activeRoad=Number(button.dataset.road);if(!state.road.includes(activeRoad))state.road.push(activeRoad);if(state.road.length===4)complete(2);persist();refreshActivity(`[data-road="${activeRoad}"]`);return;}
     if(button.hasAttribute('data-city')){state.cityMoment=Number(button.dataset.city);persist();refreshActivity(`[data-city="${state.cityMoment}"]`);return;}
     if(button.hasAttribute('data-mood')){const index=Number(button.dataset.mood);state.mood=moods[index].name;complete(3);persist();refreshActivity(`[data-mood="${index}"]`);}
   });
@@ -189,6 +188,7 @@
   document.addEventListener('click', event => {
     const jump = event.target.closest('[data-jump-chapter]');
     if (!jump) return;
+    event.preventDefault();
     jump.closest('dialog')?.close();
     chooseChapter(Number(jump.dataset.jumpChapter), true);
     $('#chapter-panel').focus({ preventScroll: true });

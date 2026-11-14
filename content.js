@@ -34,17 +34,17 @@ window.QIYE_CONTENT = {
       note: '路线是文化联系示意，不是地理导航；蒙山绿茶与南路边茶属于不同的茶类和技艺传统。',
       quote: '路的尽头，是另一张茶桌。',
       journal: '茶篓里装着故乡，路上遇见的是世界。每一次抵达，都让故事多了一位讲述者。',
-      task: '点亮四个节点，读一段茶路记忆。',
+      task: '循着茶包的移动，翻开四段茶路记忆。',
       sourceIds: ['history', 'route'], productId: 'journey-tag'
     },
     {
       id: 'city', number: '04', name: '入城', eyebrow: '一杯茶 · 一座正在生长的城',
       title: '走过山路，把雅安带进日常。',
       text: '四川雅安，在山与世界之间。茶从山间走来，也走进我们读书、相聚、出发的普通一天。七叶想带走的不只是一片风景，还有那份愿意慢下来、与人分享的生活温度。',
-      note: '摄影呈现地方氛围，茶物承载生活想象；下方为七叶的文化转译，不对应具体活动或游览路线。',
+      note: '下方展示茶具与空间的设计效果图，以泡茶、聊茶、携茶三个片刻连接日常；不代表已建成的场所或已在售的商品。',
       quote: '把一座山的温柔，放回每一天。',
-      journal: '今天，我不急着赶路。想在一条河、一条街，和一个愿意一起喝茶的人身边停下。',
-      task: '选一个生活片刻，再收藏此刻的心境。',
+      journal: '今天，我想给自己泡一杯茶，与人聊一聊它的来处，再把一份茶礼带给同行的人。',
+      task: '泡茶、聊茶、携茶：选一个每天都能发生的片刻，再收藏此刻的心境。',
       sourceIds: ['travel', 'unesco'], productId: 'travel-teaware'
     },
     {
@@ -71,36 +71,335 @@ window.QIYE_CONTENT = {
     caption:'蒙山茶制作技艺流程工序（部分）。真实工艺包含火候、芽叶状态与手法配合；互动仅取捧、揉、撒三个动作意象。',
     credit:'图源：中国非遗网 · 查看原文', source:'https://www.ihchina.cn/news_1_details/27436.html'
   },
-  // 作者提供的实地采风摄影；命名根据画面内容整理。
+  // 采风照片按画面内容编排，所有高清原图均可在图集中完整查看。
   fieldNotes: [
-    {label:'山色', title:'山，是一片叶的来处。', text:'茶垄沿山势展开，桥梁从雾里穿过。古老的茶山与今天的往来，在同一幅风景里相遇。', place:'雅安 · 茶山采风', image:'assets/field/tea-hills.webp', alt:'雅安实地采风：绿色茶垄、远山与穿行山间的桥梁', width:1600, height:1200},
-    {label:'古镇', title:'路，留在日常的纹理里。', text:'雨后的石板、深深的木檐，仍留着生活的温度。让七叶走入真实街巷，茶路的故事便有了可以亲近的尺度。', place:'雅安 · 望鱼古镇采风', image:'assets/field/old-town.webp', alt:'望鱼古镇雨后的石板街巷与两侧木构老屋', width:1068, height:1600},
-    {label:'共生', title:'在同一片绿意里，<br>慢下来。', text:'从茶山到林间，目光也从一片叶走向更多生命。雅安的吸引力，既在文化的延续，也在这份值得珍惜的自然日常。', place:'雅安 · 熊猫基地采风', image:'assets/field/forest-life.webp', alt:'作者采风摄影：林间一只大熊猫低头走过草地', width:1200, height:1600}
-  ],
-  // 生活主题不标具体点位；摄影为用户提供的网络素材，文创仍为设计提案。
+  {
+    "label": "山色",
+    "title": "山，是一片叶的来处。",
+    "text": "茶垄顺着山势展开，桥梁从雾里穿过。古老的茶山与今天的往来，在同一幅风景里相遇。",
+    "place": "雅安 · 茶山采风",
+    "photos": [
+      {
+        "src": "assets/field-2026/mountain-01.webp",
+        "thumb": "assets/field-2026/mountain-01-thumb.webp",
+        "caption": "桥梁穿过雾中的山谷",
+        "alt": "雅安采风摄影：桥梁穿过雾中的山谷",
+        "width": 2200,
+        "height": 1227
+      },
+      {
+        "src": "assets/field-2026/mountain-02.webp",
+        "thumb": "assets/field-2026/mountain-02-thumb.webp",
+        "caption": "层叠茶田与山间的往来",
+        "alt": "雅安采风摄影：层叠茶田与山间的往来",
+        "width": 2200,
+        "height": 1469
+      },
+      {
+        "src": "assets/field-2026/mountain-03.webp",
+        "thumb": "assets/field-2026/mountain-03-thumb.webp",
+        "caption": "山路、桥梁与远处的茶山",
+        "alt": "雅安采风摄影：山路、桥梁与远处的茶山",
+        "width": 2200,
+        "height": 1469
+      },
+      {
+        "src": "assets/field-2026/mountain-04.webp",
+        "thumb": "assets/field-2026/mountain-04-thumb.webp",
+        "caption": "竖幅里的云雾与山势",
+        "alt": "雅安采风摄影：竖幅里的云雾与山势",
+        "width": 1469,
+        "height": 2200
+      },
+      {
+        "src": "assets/field-2026/mountain-05.webp",
+        "thumb": "assets/field-2026/mountain-05-thumb.webp",
+        "caption": "茶垄顺着山势铺展",
+        "alt": "雅安采风摄影：茶垄顺着山势铺展",
+        "width": 2200,
+        "height": 1469
+      },
+      {
+        "src": "assets/field-2026/mountain-06.webp",
+        "thumb": "assets/field-2026/mountain-06-thumb.webp",
+        "caption": "雾中茶山与穿行的桥梁",
+        "alt": "雅安采风摄影：雾中茶山与穿行的桥梁",
+        "width": 2200,
+        "height": 1282
+      },
+      {
+        "src": "assets/field-2026/mountain-07.webp",
+        "thumb": "assets/field-2026/mountain-07-thumb.webp",
+        "caption": "从茶田望向起伏的远山",
+        "alt": "雅安采风摄影：从茶田望向起伏的远山",
+        "width": 2200,
+        "height": 1469
+      }
+    ]
+  },
+  {
+    "label": "古镇",
+    "title": "路，留在日常的纹理里。",
+    "text": "雨后的石板、层叠的木檐，还有街边忙碌与安坐的人。茶路的记忆，也需要回到这样可亲近的生活尺度。",
+    "place": "雅安 · 望鱼古镇采风",
+    "photos": [
+      {
+        "src": "assets/field-2026/town-01.webp",
+        "thumb": "assets/field-2026/town-01-thumb.webp",
+        "caption": "木屋之间的绿意与街巷",
+        "alt": "雅安采风摄影：木屋之间的绿意与街巷",
+        "width": 2200,
+        "height": 1453
+      },
+      {
+        "src": "assets/field-2026/town-02.webp",
+        "thumb": "assets/field-2026/town-02-thumb.webp",
+        "caption": "雨后石板街上的行人",
+        "alt": "雅安采风摄影：雨后石板街上的行人",
+        "width": 2200,
+        "height": 1312
+      },
+      {
+        "src": "assets/field-2026/town-03.webp",
+        "thumb": "assets/field-2026/town-03-thumb.webp",
+        "caption": "石板路面映着雨后的光",
+        "alt": "雅安采风摄影：石板路面映着雨后的光",
+        "width": 2200,
+        "height": 1114
+      },
+      {
+        "src": "assets/field-2026/town-04.webp",
+        "thumb": "assets/field-2026/town-04-thumb.webp",
+        "caption": "木檐与深巷的层次",
+        "alt": "雅安采风摄影：木檐与深巷的层次",
+        "width": 2200,
+        "height": 1226
+      },
+      {
+        "src": "assets/field-2026/town-05.webp",
+        "thumb": "assets/field-2026/town-05-thumb.webp",
+        "caption": "老屋、街巷和远处的山",
+        "alt": "雅安采风摄影：老屋、街巷和远处的山",
+        "width": 2200,
+        "height": 1264
+      },
+      {
+        "src": "assets/field-2026/town-06.webp",
+        "thumb": "assets/field-2026/town-06-thumb.webp",
+        "caption": "街边备食的人间烟火",
+        "alt": "雅安采风摄影：街边备食的人间烟火",
+        "width": 1541,
+        "height": 2200
+      },
+      {
+        "src": "assets/field-2026/town-07.webp",
+        "thumb": "assets/field-2026/town-07-thumb.webp",
+        "caption": "来往的人走过木屋之间",
+        "alt": "雅安采风摄影：来往的人走过木屋之间",
+        "width": 2200,
+        "height": 1201
+      },
+      {
+        "src": "assets/field-2026/town-08.webp",
+        "thumb": "assets/field-2026/town-08-thumb.webp",
+        "caption": "檐下静静做着手作的片刻",
+        "alt": "雅安采风摄影：檐下静静做着手作的片刻",
+        "width": 1549,
+        "height": 2200
+      },
+      {
+        "src": "assets/field-2026/town-09.webp",
+        "thumb": "assets/field-2026/town-09-thumb.webp",
+        "caption": "红灯笼下的古镇店铺",
+        "alt": "雅安采风摄影：红灯笼下的古镇店铺",
+        "width": 1469,
+        "height": 2200
+      }
+    ]
+  },
+  {
+    "label": "共生",
+    "title": "在同一片绿意里，<br>慢下来。",
+    "text": "从茶山到林间，目光也从一片叶走向更多生命。休憩、行走、相伴的细小片刻，让我们感受雅安的自然日常。",
+    "place": "雅安 · 熊猫采风",
+    "photos": [
+      {
+        "src": "assets/field-2026/panda-01.webp",
+        "thumb": "assets/field-2026/panda-01-thumb.webp",
+        "caption": "竹林里休憩的大熊猫",
+        "alt": "雅安采风摄影：竹林里休憩的大熊猫",
+        "width": 2200,
+        "height": 1650
+      },
+      {
+        "src": "assets/field-2026/panda-02.webp",
+        "thumb": "assets/field-2026/panda-02-thumb.webp",
+        "caption": "树下并坐的大熊猫背影",
+        "alt": "雅安采风摄影：树下并坐的大熊猫背影",
+        "width": 2200,
+        "height": 1650
+      },
+      {
+        "src": "assets/field-2026/panda-03.webp",
+        "thumb": "assets/field-2026/panda-03-thumb.webp",
+        "caption": "林间走过草地的大熊猫",
+        "alt": "雅安采风摄影：林间走过草地的大熊猫",
+        "width": 1650,
+        "height": 2200
+      },
+      {
+        "src": "assets/field-2026/panda-04.webp",
+        "thumb": "assets/field-2026/panda-04-thumb.webp",
+        "caption": "几只大熊猫与同一片林地",
+        "alt": "雅安采风摄影：几只大熊猫与同一片林地",
+        "width": 2200,
+        "height": 1540
+      }
+    ]
+  }
+],
   cityMoments: [
-    {
-      id: 'tea-time', name: '一席茶间', type: '窗影 · 茶香',
-      title: '让山间的茶香，回到一席日常。',
-      text: '光穿过窗棂，落在安静的一刻。七叶把茶芽与茶篓的记忆带上杯身，让一次普通的饮茶，也成为与雅安相遇的方式。',
-      image: 'assets/yaan/window-light.webp', alt: '绿叶掩映下的木质窗棂与柔和光影',
-      photoNote: '雅安印象 · 窗影与新绿', productId: 'travel-teaware'
-    },
-    {
-      id: 'slow-walk', name: '一刻慢行', type: '树影 · 远行',
-      title: '走得再远，也记得一座山。',
-      text: '顺着树影往前走，暂时把匆忙放在身后。一枚系在行李上的七叶茶牌，像一封写给远方的短信：我从四川雅安的故事里出发。',
-      image: 'assets/yaan/forest-walk.webp', alt: '绿树与青苔环绕的山间石阶步道',
-      photoNote: '雅安印象 · 山间慢行', productId: 'journey-tag'
-    },
-    {
-      id: 'shared-story', name: '一份心意', type: '门庭 · 相遇',
-      title: '让一份心意，把雅安带向世界。',
-      text: '一扇门连接内外，一件茶物连接彼此。把七叶、茶山和茶路的故事装进礼盒，让收到它的人，也愿意听一听雅安的名字。',
-      image: 'assets/yaan/courtyard-light.webp', alt: '树荫下的红色院门、石阶和青苔',
-      photoNote: '雅安印象 · 门庭光阴', productId: 'qiye-story-gift'
-    }
-  ],
+  {
+    "id": "brew",
+    "name": "泡一杯茶",
+    "type": "随行茶具 · 设计效果图",
+    "title": "让泡茶，成为每天顺手的小事。",
+    "text": "杯、茶罐和收纳包放在一起，为随时泡茶留一个位置。七叶走进每天会用到的器物，把茶山的记忆放回一杯热茶里。",
+    "image": "assets/collection/travel-teaware-board.webp",
+    "alt": "七叶旅行茶具设计展板：茶杯、茶罐、收纳包与便携组合",
+    "photoNote": "把茶放在手边",
+    "imageMode": "contain",
+    "productId": "travel-teaware"
+  },
+  {
+    "id": "talk",
+    "name": "聊一聊茶",
+    "type": "文创空间 · 场景效果图",
+    "title": "从一件茶物，聊起雅安的故事。",
+    "text": "杯身的七叶、展墙上的茶山、手里的一件小物，都可以成为交谈的开始。这里呈现一处文创空间的设计想象，让人与茶文化有更多相遇的机会。",
+    "image": "assets/scenarios/qiye-cultural-store.webp",
+    "alt": "七叶文创空间设计效果图，展示茶杯、礼盒、角色装置与交流的访客",
+    "photoNote": "让茶成为交谈的开端",
+    "productId": "qiye-story-gift"
+  },
+  {
+    "id": "carry",
+    "name": "带一份茶",
+    "type": "景区茶礼 · 场景效果图",
+    "title": "带走一份茶，也把雅安介绍给下一位。",
+    "text": "在茶山边挑一件茶礼，把对雅安的记忆装进随身行囊。七叶与文创产品一起，连接一次旅行和回家后的分享。",
+    "image": "assets/scenarios/mountain-tea-shop.webp",
+    "alt": "茶山景区七叶茶礼商店的场景效果图，包含文创陈列、茶山背景与游客",
+    "photoNote": "把茶与心意带向日常",
+    "productId": "tea-journey-gift"
+  }
+],
+  roadStories: [
+  {
+    "name": "蒙顶",
+    "chapter": "山间茶事",
+    "title": "在茶山，记住起点。",
+    "text": "蒙顶山位于雅安名山区，是蒙山茶传统制作技艺的重要传承地。这里的蒙顶甘露属于绿茶；沿古道进入高原的南路边茶另有工艺，不能视作同一种茶。",
+    "detail": "一座茶山，既保存种茶的地方记忆，也延续各有特点的制茶技艺。",
+    "object": "茶芽",
+    "sourceIds": [
+      "craft"
+    ]
+  },
+  {
+    "name": "雅安",
+    "chapter": "集散往来",
+    "title": "在城中，让茶与人汇合。",
+    "text": "雅安一带曾是藏茶制造与交易的重要中心。南路边茶从产区出发，经人背畜驮进入高原；茶包、茶号与运输，共同留下城市的茶业记忆。",
+    "detail": "从生产到交易，茶开始进入人与人之间的往来。",
+    "object": "茶包",
+    "sourceIds": [
+      "history",
+      "route"
+    ]
+  },
+  {
+    "name": "康定",
+    "chapter": "越山相遇",
+    "title": "在山口，交换各自的生活。",
+    "text": "康定旧称打箭炉，是川藏交通与商品交换的重要节点。来自不同方向的商旅在此交易，茶叶与皮毛、药材等商品往来流通，古道连接起多样的生活。",
+    "detail": "路不只运送物品，也让不同地域的人持续相遇。",
+    "object": "行旅",
+    "sourceIds": [
+      "route"
+    ]
+  },
+  {
+    "name": "拉萨",
+    "chapter": "茶入日常",
+    "title": "在远方，抵达另一张茶桌。",
+    "text": "川藏与滇藏古道的多条路径通向拉萨，并继续连接更广的地区。茶叶在沿途便被交易和消费，进入村寨与城镇的日常，承载着持续的交往。",
+    "detail": "茶的旅程，在被饮用、被分享的那一刻继续生长。",
+    "object": "茶碗",
+    "sourceIds": [
+      "route"
+    ]
+  }
+],
+  ipChapters: [
+  {
+    "label": "来处",
+    "title": "从一颗茶种开始，记住四川雅安。",
+    "text": "七叶的故事设定，是一颗携带七株茶树记忆的茶种，从蒙顶山出发，沿古道探索世界。它的好奇与远行，始终围绕一个问题：怎样让更多人认识茶的来处？",
+    "points": [
+      {
+        "name": "文化原型",
+        "text": "蒙顶山流传着吴理真手植七株茶树的故事。七叶借用这份地方传统记忆，寄托对种茶先人的纪念。"
+      },
+      {
+        "name": "角色设定",
+        "text": "温和、好奇，也有探索的方向。它是原创的茶文化幻想角色，以年轻的视角连接古老的文化与今天的生活。"
+      }
+    ],
+    "note": "七株茶树故事为地方传说；茶种行者及其性格、旅程为本项目原创设定。",
+    "sourceId": "history"
+  },
+  {
+    "label": "造型",
+    "title": "把文化线索，写进七叶的轮廓。",
+    "text": "七叶以舒展的茶芽与层叠的茶田组织造型。把文化线索放进外轮廓、身体曲线和随身物件，让角色即使离开展板文字，也能保留茶山的辨识度。",
+    "points": [
+      {
+        "name": "七叶与茶田",
+        "text": "舒展的叶片回应七株茶树的记忆；身体层叠的曲线借用茶田与山脊的起伏。"
+      },
+      {
+        "name": "古道与竹篓",
+        "text": "背部的蜿蜒线条转译茶路，竹编茶篓承接携茶而行的探索主题。"
+      },
+      {
+        "name": "一滴琥珀",
+        "text": "胸前茶汤色的点缀，为低饱和的茶绿留下一点温度，回应饮茶与分享。"
+      }
+    ],
+    "note": "以上为本项目对角色造型的设计说明，不是传统纹样或历史器物的复原。"
+  },
+  {
+    "label": "同行",
+    "title": "从茶山走来，最终回到每一天。",
+    "text": "七叶连接新老文化的方式，是让故事变得可体验、可使用、可分享。网页中的五段茶路，与茶具、茶礼、印章等文创提案，共同承接这段旅程。",
+    "points": [
+      {
+        "name": "记住来处",
+        "text": "从种茶记忆、传统技艺与古道往来，理解雅安茶文化的不同层次。"
+      },
+      {
+        "name": "走进日常",
+        "text": "让角色进入杯身、茶牌、书签和礼盒，使文化成为生活中可以携带的小物。"
+      },
+      {
+        "name": "把故事带远",
+        "text": "用一张茶路卡、一份茶礼和一次交谈，把“四川雅安，在山与世界之间”介绍给更多人。"
+      }
+    ],
+    "note": "文创与景区空间均为设计提案，应用效果图不代表已经建成或售卖。"
+  }
+],
   sources: [
     { id: 'history', title: '“茶城”雅安：中国茶史浓缩于此', publisher: '雅安市人民政府', url: 'https://www.yaan.gov.cn/zhangzhe/show/2c64889b-da94-4cad-8152-e9b4eabcc631.html' },
     { id: 'craft-image', title: '知节气 识茶事 和天下丨芒种：麦浪飘香 茶润仲夏', publisher: '中国非物质文化遗产网', url: 'https://www.ihchina.cn/news_1_details/27436.html' },

@@ -1,0 +1,274 @@
+/* 2026.11.15 / 山景封面、清晰叙事与摄影展阅。沿用现有色彩和字号体系。 */
+/* 首页：让地方风景成为舞台，七叶作为同行者出现。 */
+.hero.hero-panorama { display: block; position: relative; overflow: hidden; padding: 0; margin-top: 24px; min-height: 720px; background: #344B39; color: #FCFCF7; }
+.hero-landscape, .hero-shade { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero-landscape { object-fit: cover; object-position: center 58%; }
+.hero-shade { background: #162C2085; }
+.hero-panorama-inner { position: relative; display: grid; grid-template-columns: 1fr 256px; gap: 80px; align-items: center; min-height: 640px; padding-block: 64px; }
+.hero-panorama .hero-copy { max-width: 680px; }
+.hero-panorama .hero-copy .eyebrow { color: #F2F4E8; font-size: 16px; line-height: 24px; }
+.hero-panorama .hero-copy .eyebrow span { background: #C89B52; }
+.hero-panorama h1 { background-image: linear-gradient(110deg,#FFFFFF,#DCE5D5); font-size: 96px; line-height: 1; margin-block: 32px; }
+.hero-panorama .gold { color: #D4B06F; -webkit-text-fill-color: #D4B06F; }
+.hero-panorama .hero-intro { font-size: 18px; line-height: 28px; color: #F2F4E8; }
+.hero-panorama .hero-copy .primary { background: #FCFCF7; border-color: #FCFCF7; color: var(--ink); min-width: 216px; }
+.hero-panorama .hero-copy .primary:hover { background: #EAEFDF; }
+.hero-panorama .hero-time { color: #DCE5D5; font-size: 14px; line-height: 20px; }
+.hero-panorama .hero-visual { position: relative; min-height: 0; align-self: end; padding: 16px; background: #F7F5EF; color: var(--ink); border-radius: 16px; margin-bottom: 24px; box-shadow: 0 16px 48px #15261E26; }
+.hero-companion-label { display: block; font-size: 12px; line-height: 20px; color: var(--muted); }
+.hero-panorama .hero-character { display: block; width: 100%; height: 240px; margin-top: 16px; }
+.hero-panorama .hero-location { top: 16px; right: 16px; font-size: 12px; line-height: 16px; letter-spacing: .04em; }
+.hero-panorama .hero-location span { display: none; }
+.hero-panorama .hero-caption { margin: 12px 0 0; font-size: 12px; line-height: 20px; gap: 8px; }
+.hero-panorama .hero-caption > span:last-child { display: none; }
+.hero-panorama .tiny-leaf { font-size: 18px; }
+.hero-panorama .hero-bottom { position: relative; margin: 0 auto; padding-block: 24px; color: #F0F4E8; border-color: #F0F4E84D; font-size: 14px; line-height: 20px; letter-spacing: .04em; }
+/* 五章都有可识别的后续入口，文字和点击面积保持清楚。 */
+.activity-bottom { display: grid; grid-template-columns: minmax(0,1fr); justify-content: stretch; gap: 16px; align-items: start; margin-top: 32px; font-size: 14px; line-height: 24px; }
+.next-chapter, .journey-finish { display: flex; align-items: center; justify-content: space-between; gap: 24px; width: 100%; min-height: 80px; padding: 16px 24px; background: var(--ink); color: var(--surface); border: 1px solid var(--ink); border-radius: 16px; text-align: left; transition: background 300ms var(--motion),transform 500ms var(--motion); }
+.next-chapter:hover, .journey-finish:hover { color: var(--surface); background: #40563B; transform: translateY(-2px); }
+.next-chapter:active, .journey-finish:active { transform: scale(.98); }
+.next-chapter small, .journey-finish small { display: block; color: #D1DDC8; font-size: 12px; line-height: 20px; }
+.next-chapter strong, .journey-finish strong { display: block; font-size: 18px; line-height: 28px; font-weight: 500; margin-top: 4px; }
+.next-chapter b, .journey-finish b { font-size: 24px; line-height: 32px; font-weight: 400; }
+.journey-finish { margin-top: 24px; }
+.interaction-head { font-size: 16px; line-height: 24px; }
+.interaction .task { font-size: 16px; line-height: 24px; }
+/* 同一套完整五指掌形，用于捧、揉、撒。叶片揉转沿用原来版本。 */
+.craft-hands { width: 360px; height: 250px; top: 0; }
+.craft-hands .palm-fill { fill: #E9DDC5; stroke: #7C8F6A; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
+.craft-hands .palm-line { fill: none; stroke: #9BA888; stroke-width: 1; opacity: .8; }
+.hand-left, .hand-right { opacity: 1; }
+.gesture-rest .hand-left, .gesture-rest .hand-right { transform: translate(-20px,24px); }
+.gesture-lift .hand-left, .gesture-lift .hand-right { animation: qiye-palms-lift 3.6s var(--motion) both; }
+.gesture-roll .hand-left, .gesture-roll .hand-right { animation: qiye-palms-roll 3.2s var(--motion) both; }
+.gesture-release .hand-left, .gesture-release .hand-right { animation: qiye-palms-release 3.6s var(--motion) both; }
+.craft-stage { height: 280px; }
+.craft-info { font-size: 16px; line-height: 28px; min-height: 84px; }
+.craft-button { font-size: 16px; line-height: 24px; min-height: 56px; }
+.craft-motion-note { bottom: 12px; font-size: 14px; line-height: 20px; }
+@keyframes qiye-palms-lift {
+  0%,8% { transform: translate(-20px,24px); }
+  26% { transform: translate(10px,0); }
+  48%,63% { transform: translate(14px,-52px); }
+  83% { transform: translate(10px,0); }
+  100% { transform: translate(-20px,24px); }
+}
+@keyframes qiye-palms-roll {
+  0% { transform: translate(-20px,24px); }
+  18% { transform: translate(15px,4px) rotate(-12deg); }
+  32% { transform: translate(27px,-3px) rotate(8deg); }
+  46% { transform: translate(7px,9px) rotate(-10deg); }
+  60% { transform: translate(26px,-3px) rotate(8deg); }
+  74% { transform: translate(9px,8px) rotate(-10deg); }
+  86% { transform: translate(15px,4px) rotate(-12deg); }
+  100% { transform: translate(-20px,24px); }
+}
+@keyframes qiye-palms-release {
+  0%,18% { transform: translate(14px,-52px); }
+  43% { transform: translate(-22px,-32px) rotate(-12deg); }
+  75%,100% { transform: translate(-30px,24px) rotate(-16deg); }
+}
+/* 茶路：影像、移动的茶包、器物线索与可阅读的故事共同呈现。 */
+.tea-atlas { margin-top: 24px; }
+.atlas-scene { position: relative; overflow: hidden; border-radius: 16px; aspect-ratio: 600/300; background: #57684C; }
+.atlas-scene > img, .atlas-shade, .atlas-path { position: absolute; inset: 0; width: 100%; height: 100%; }
+.atlas-scene > img { object-fit: cover; object-position: center 60%; }
+.atlas-shade { background: #1F3823A6; }
+.atlas-overline { position: absolute; top: 16px; left: 16px; right: 16px; color: #F5F6EA; font-size: 14px; line-height: 20px; }
+.atlas-photo-note { position: absolute; bottom: 12px; left: 16px; right: 16px; font-size: 12px; line-height: 16px; color: #E6EDD9; }
+.atlas-parcel { animation: tea-parcel-travel 1.5s var(--motion) both; }
+@keyframes tea-parcel-travel { from { transform: translate(var(--from-x),var(--from-y)); } to { transform: translate(var(--to-x),var(--to-y)); } }
+.atlas-stops { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; margin-top: 16px; }
+.atlas-stops button { position: relative; display: grid; justify-items: center; gap: 4px; padding: 12px 4px; min-width: 0; background: #EEF1E6; border: 1px solid #D6DEC9; border-radius: 12px; transition: background 300ms var(--motion),color 300ms var(--motion); }
+.atlas-stops svg { width: 36px; height: 36px; }
+.atlas-stops span { font-size: 16px; line-height: 24px; }
+.atlas-stops small { font-size: 12px; line-height: 20px; color: var(--muted); }
+.atlas-stops b { position: absolute; top: 4px; right: 8px; font-weight: 400; color: var(--green); font-size: 12px; }
+.atlas-stops button:hover { background: #DFE7D2; }
+.atlas-stops button[aria-pressed=true] { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+.atlas-stops button[aria-pressed=true] small, .atlas-stops button[aria-pressed=true] b { color: #D6E3C7; }
+.atlas-story { margin-top: 24px; }
+.atlas-story .eyebrow { color: var(--green); font-size: 14px; line-height: 20px; letter-spacing: .04em; }
+.atlas-story h4 { font-size: 24px; line-height: 32px; font-weight: 500; margin: 8px 0 16px; }
+.atlas-story > p:not(.eyebrow) { font-size: 18px; line-height: 28px; color: #56654F; }
+.atlas-story blockquote { margin: 16px 0; padding: 16px; border-radius: 12px; background: #EEF1E6; font-size: 16px; line-height: 24px; color: var(--ink); }
+.atlas-source { display: flex; flex-wrap: wrap; gap: 12px; font-size: 12px; line-height: 20px; color: var(--muted); }
+.atlas-source a { text-decoration: underline; text-underline-offset: 4px; }
+.atlas-continue { display: flex; align-items: center; justify-content: space-between; gap: 24px; width: 100%; background: #E6ECD9; border: 1px solid #CFDABC; border-radius: 12px; padding: 12px 16px; font-size: 16px; line-height: 24px; margin-top: 24px; }
+.atlas-continue:hover { background: #DCE6CB; }
+.atlas-context { margin-top: 16px; font-size: 14px; line-height: 24px; color: var(--muted); }
+.atlas-arrival { margin-top: 24px; color: var(--green); font-size: 18px; line-height: 28px; }
+.chapter { align-items: start; }
+/* 入城：让内容围绕泡茶、聊茶、携茶，图区分实拍与场景提案。 */
+.city-moment-options button { font-size: 16px; line-height: 24px; min-height: 48px; }
+.city-moment-story > p:not(.eyebrow) { font-size: 16px; line-height: 28px; }
+.city-photograph img { aspect-ratio: 16/10; }
+.city-photograph.is-design-board { background: #EAE8DF; }
+.city-photograph.is-design-board img { object-fit: contain; }
+.city-photograph figcaption { font-size: 14px; line-height: 20px; }
+/* 七叶故事档案：为概览追加可切换的文化原型、造型与角色使命。 */
+.meet-section { padding-bottom: 48px; }
+.ip-archive-section { padding-block: 24px 96px; }
+#ip-archive { display: grid; grid-template-columns: 240px 1fr; gap: 48px; margin-top: 40px; }
+.ip-story-index { display: grid; gap: 12px; align-content: start; }
+.ip-story-index button { display: flex; gap: 16px; align-items: center; padding: 16px 24px; background: #EEF0E5; border: 1px solid var(--line); border-radius: 12px; text-align: left; transition: background 300ms var(--motion),color 300ms var(--motion); }
+.ip-story-index button > span { font-size: 14px; line-height: 20px; }
+.ip-story-index strong { font-size: 20px; line-height: 28px; font-weight: 500; }
+.ip-story-index b { margin-left: auto; font-size: 20px; font-weight: 400; }
+.ip-story-index button:hover { background: #E1E8D4; }
+.ip-story-index button[aria-pressed=true] { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+.ip-story-panel { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; padding: 32px; background: #EEF0E5; border-radius: 16px; }
+.ip-story-panel h3 { font-size: 30px; line-height: 36px; font-weight: 500; margin: 16px 0 24px; text-wrap: balance; }
+.ip-story-panel > div > p:not(.eyebrow) { font-size: 16px; line-height: 28px; color: #586650; }
+.ip-story-panel dl { margin: 0; display: grid; gap: 24px; align-content: start; }
+.ip-story-panel dt { font-size: 18px; line-height: 28px; color: var(--ink); }
+.ip-story-panel dd { margin: 8px 0 0; font-size: 16px; line-height: 28px; color: #586650; }
+.ip-story-note { grid-column: 1/-1; font-size: 14px; line-height: 24px; color: var(--muted); }
+.ip-story-note a { display: inline-block; text-decoration: underline; text-underline-offset: 4px; }
+/* 采风影像：全部保留构图，缩略图与完整查看承担不同的阅读尺度。 */
+.field-notebook { grid-template-columns: 1.2fr 1fr; align-items: start; }
+.field-gallery { min-width: 0; }
+.field-stage { position: relative; border-radius: 16px; overflow: hidden; background: #E6E8DD; aspect-ratio: 4/3; touch-action: pan-y; }
+.field-photo-open { display: block; width: 100%; height: 100%; padding: 0; border: 0; background: transparent; }
+.field-current, .field-previous { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.field-current.is-changing { animation: photo-enter 600ms var(--motion) both; }
+.field-previous { pointer-events: none; transition: opacity 600ms var(--motion); }
+.field-previous.is-leaving { opacity: 0; }
+@keyframes photo-enter { from { opacity: .4; transform: scale(1.02); } to { opacity: 1; transform: scale(1); } }
+.field-photo-open > span { position: absolute; top: 12px; right: 12px; border-radius: 8px; padding: 8px 12px; color: var(--ink); background: #FCFCF7F0; font-size: 12px; line-height: 16px; }
+.field-page { position: absolute; bottom: 12px; right: 12px; left: 12px; display: flex; align-items: center; justify-content: space-between; gap: 16px; pointer-events: none; }
+.field-page button { pointer-events: auto; width: 48px; height: 48px; border: 1px solid #D8DECF; border-radius: 50%; background: #FCFCF7F0; font-size: 24px; line-height: 32px; transition: background 300ms var(--motion),transform 500ms var(--motion); }
+.field-page button:hover { background: #E3EBD7; transform: scale(1.05); }
+.field-page-count { background: #FCFCF7E8; color: var(--ink); padding: 4px 12px; border-radius: 8px; font-size: 14px; line-height: 24px; font-variant-numeric: tabular-nums; }
+.field-photo-caption { display: flex; justify-content: space-between; gap: 16px; padding-block: 12px; color: var(--muted); font-size: 14px; line-height: 20px; }
+.field-photo-caption > span:last-child { white-space: nowrap; }
+.field-thumbnails { display: flex; gap: 8px; max-width: 100%; overflow-x: auto; padding-block: 4px 12px; scrollbar-width: thin; }
+.field-thumbnails button { padding: 4px; border: 1px solid transparent; border-radius: 8px; background: #E6E8DD; flex-shrink: 0; }
+.field-thumbnails img { width: 64px; height: 52px; object-fit: cover; border-radius: 4px; }
+.field-thumbnails button[aria-pressed=true] { border-color: var(--ink); background: #FCFCF7; }
+.field-selectors { gap: 8px; }
+.field-selectors button { gap: 8px; padding: 12px; }
+.field-selectors small { font-size: 12px; line-height: 20px; opacity: .7; }
+.field-copy { padding-top: 16px; }
+.field-copy h3 { font-size: 30px; line-height: 36px; }
+.field-copy > .field-gallery-help { margin-top: 16px; font-size: 14px; line-height: 24px; color: var(--muted); }
+.field-gallery-help { max-width: 30em; }
+/* 场景提案：原始高清效果图完整呈现，不使用重复缩略图。 */
+.scenario-section { padding-block: 24px 96px; }
+.scenario-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 40px; }
+.scenario-grid figure { margin: 0; min-width: 0; }
+.scenario-grid button { display: block; position: relative; width: 100%; padding: 0; border: 0; border-radius: 16px; overflow: hidden; background: #EAE8DF; }
+.scenario-grid img { width: 100%; height: auto; transition: transform 600ms var(--motion); }
+.scenario-grid button:hover img { transform: scale(1.02); }
+.scenario-grid button span { position: absolute; bottom: 12px; right: 12px; padding: 8px 12px; background: #FCFCF7F0; border-radius: 8px; font-size: 12px; line-height: 20px; }
+.scenario-grid figcaption { margin-top: 24px; }
+.scenario-grid figcaption > span { font-size: 14px; line-height: 20px; color: var(--green); }
+.scenario-grid h3 { font-size: 24px; line-height: 32px; margin: 12px 0; font-weight: 500; text-wrap: balance; }
+.scenario-grid p, .scenario-note { font-size: 16px; line-height: 28px; color: var(--muted); }
+.scenario-note { margin-block: 32px 24px; }
+.photo-dialog { width: min(1280px,calc(100% - 32px)); max-height: 94dvh; padding: 24px; border-radius: 16px; overflow: auto; }
+.photo-dialog-head { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 16px; }
+.photo-dialog-head h2 { font-size: 20px; line-height: 28px; font-weight: 500; }
+.photo-dialog-head .dialog-close { position: static; flex-shrink: 0; }
+#photo-view-image { width: 100%; height: min(70dvh,800px); object-fit: contain; background: #E6E8DD; border-radius: 8px; }
+.photo-dialog-bottom { display: flex; gap: 24px; align-items: center; justify-content: space-between; margin-top: 16px; }
+.photo-dialog-bottom p { font-size: 14px; line-height: 24px; color: var(--muted); text-align: center; }
+.photo-dialog-bottom button { width: 48px; height: 48px; flex-shrink: 0; border: 1px solid var(--line); border-radius: 50%; background: #EEF1E6; font-size: 24px; line-height: 32px; }
+@media (max-width:1000px) {
+  .hero-panorama-inner { grid-template-columns: 1fr 200px; gap: 32px; }
+  .hero-panorama h1 { font-size: 72px; }
+  .hero-panorama .hero-character { height: 208px; }
+  .hero-panorama .hero-location { display: none; }
+  #ip-archive { grid-template-columns: 176px 1fr; gap: 24px; }
+  .ip-story-panel { grid-template-columns: 1fr; padding: 24px; }
+  .ip-story-index button { padding: 16px; }
+  .field-notebook { gap: 32px; }
+}
+@media (max-width:680px) {
+  .hero.hero-panorama { margin-top: 16px; min-height: 0; }
+  .hero-panorama-inner { display: grid; grid-template-columns: 1fr; min-height: 0; padding-block: 40px 24px; gap: 24px; }
+  .hero-panorama .hero-copy .eyebrow { font-size: 14px; line-height: 24px; letter-spacing: .02em; }
+  .hero-panorama h1 { font-size: 60px; margin-block: 24px; }
+  .hero-panorama .hero-intro { font-size: 16px; line-height: 24px; }
+  .hero-panorama .hero-time { font-size: 12px; line-height: 20px; }
+  .hero-panorama .hero-copy .button { margin-top: 24px; }
+  .hero-panorama .hero-visual { width: 160px; justify-self: end; padding: 12px; margin-bottom: 0; border-radius: 12px; }
+  .hero-panorama .hero-character { height: 152px; margin-top: 8px; }
+  .hero-panorama .hero-caption { font-size: 12px; line-height: 16px; margin-top: 8px; }
+  .hero-panorama .hero-caption .tiny-leaf { display: none; }
+  .hero-companion-label { font-size: 12px; line-height: 16px; }
+  .hero-panorama .hero-bottom { font-size: 12px; line-height: 20px; letter-spacing: .02em; padding-block: 16px; margin-top: 0; }
+  .hero-panorama .hero-bottom > span:last-child { display: none; }
+  .next-chapter, .journey-finish { padding: 16px; min-height: 80px; }
+  .next-chapter strong, .journey-finish strong { font-size: 16px; line-height: 24px; }
+  .interaction-head { font-size: 14px; line-height: 24px; }
+  .interaction-head > span:last-child { font-size: 12px; }
+  .interaction .task { font-size: 16px; line-height: 24px; }
+  .craft-stage { height: 256px; }
+  .craft-hands { width: 320px; height: 224px; top: 8px; }
+  .craft-button { font-size: 14px; line-height: 20px; min-height: 64px; }
+  .craft-info { font-size: 16px; line-height: 28px; min-height: 112px; }
+  .atlas-scene { aspect-ratio: 1.6; }
+  .atlas-overline { font-size: 12px; line-height: 20px; top: 12px; }
+  .atlas-photo-note { font-size: 12px; line-height: 16px; left: 12px; right: 12px; bottom: 8px; }
+  .atlas-stops { gap: 4px; }
+  .atlas-stops button { padding: 12px 4px; }
+  .atlas-stops svg { width: 32px; height: 32px; }
+  .atlas-stops small { font-size: 12px; line-height: 16px; }
+  .atlas-story h4 { font-size: 24px; line-height: 32px; }
+  .atlas-story > p:not(.eyebrow) { font-size: 16px; line-height: 28px; }
+  .atlas-context { font-size: 14px; line-height: 24px; }
+  .city-moment-options { gap: 8px; }
+  .city-moment-options button { font-size: 14px; line-height: 24px; padding-inline: 12px; }
+  .city-moment-story > p:not(.eyebrow) { font-size: 16px; line-height: 28px; }
+  .city-photograph figcaption { font-size: 12px; line-height: 20px; }
+  .ip-archive-section { padding-block: 0 48px; }
+  #ip-archive { grid-template-columns: 1fr; gap: 24px; margin-top: 24px; }
+  .ip-story-index { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
+  .ip-story-index button { gap: 8px; padding: 12px; justify-content: center; }
+  .ip-story-index strong { font-size: 16px; line-height: 24px; }
+  .ip-story-index b { display: none; }
+  .ip-story-index button > span { font-size: 12px; }
+  .ip-story-panel { padding: 24px; gap: 24px; }
+  .ip-story-panel h3 { font-size: 24px; line-height: 32px; margin: 12px 0 16px; }
+  .field-notebook { grid-template-columns: 1fr; gap: 24px; }
+  .field-copy { padding-top: 0; }
+  .field-copy h3 { font-size: 30px; line-height: 36px; }
+  .field-copy > p:not(.eyebrow):not(.field-closing):not(.field-gallery-help) { font-size: 16px; line-height: 28px; }
+  .field-selectors { gap: 8px; }
+  .field-selectors button { padding: 12px; gap: 8px; font-size: 14px; }
+  .field-selectors button > span { display: none; }
+  .field-photo-caption { font-size: 12px; line-height: 20px; gap: 12px; }
+  .field-photo-open > span { padding: 4px 8px; top: 8px; right: 8px; }
+  .field-page { bottom: 8px; left: 8px; right: 8px; }
+  .field-page button { width: 40px; height: 40px; }
+  .scenario-section { padding-block: 24px 48px; }
+  .scenario-grid { grid-template-columns: 1fr; gap: 32px; margin-top: 24px; }
+  .scenario-grid figcaption { margin-top: 16px; }
+  .scenario-grid h3 { font-size: 24px; line-height: 32px; }
+  .scenario-section > .button { text-align: center; font-size: 14px; gap: 12px; }
+  .photo-dialog { width: calc(100% - 16px); padding: 16px; }
+  .photo-dialog-head { gap: 16px; }
+  #photo-view-image { height: 64dvh; }
+  .photo-dialog-bottom { gap: 12px; }
+  .photo-dialog-bottom p { font-size: 12px; line-height: 20px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .gesture-lift .hand-left, .gesture-lift .hand-right, .gesture-roll .hand-left, .gesture-roll .hand-right, .gesture-release .hand-left, .gesture-release .hand-right, .atlas-parcel, .field-current.is-changing { animation: none; }
+  .atlas-parcel { transform: translate(var(--to-x),var(--to-y)); }
+  .field-current.is-changing { transform: none; }
+  .field-previous { transition-duration: 0s; }
+  .next-chapter, .journey-finish, .field-page button, .scenario-grid img { transition: opacity 300ms var(--motion); transform: none; }
+}
+
+/* 托盘、手掌与芽叶分层，叶片始终可见。 */
+.craft-tray { position:absolute; left:50%; top:50%; width:210px; height:104px; background:#E6DECD; border-radius:50%; border:9px solid #E1D6BD; box-shadow:inset 0 -14px 0 #D5C5A5; transform:translate(-50%,-50%) perspective(500px) rotateX(18deg); z-index:0; }
+.craft-stage .tea-bowl { background:transparent; border-color:transparent; box-shadow:none; z-index:2; pointer-events:none; }
+.craft-hands { z-index:1; }
+
+@media (max-width:680px) {
+ .field-section .section-heading, .ip-archive-section .section-heading, .scenario-section .section-heading { display:block; }
+ .field-section .section-heading h2, .ip-archive-section .section-heading h2, .scenario-section .section-heading h2 { font-size:30px; line-height:36px; }
+ .field-section .section-aside, .ip-archive-section .section-aside, .scenario-section .section-aside { margin-top:16px; }
+}

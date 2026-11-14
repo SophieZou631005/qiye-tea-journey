@@ -26,9 +26,10 @@
     </div>`;
   }
 
-  function craftHands(index) {
-    if(index!==0 && index!==2) return '';
-    return `<svg class="craft-hands" viewBox="0 0 320 200" aria-hidden="true"><g class="hand-left"><path d="M12 169 68 126Q77 118 87 110L124 88Q130 85 133 90Q135 94 129 99L111 113Q108 116 112 118L139 102Q145 99 148 104Q149 108 144 113L117 139Q103 154 85 154L40 189Z"/><path d="m81 139 30-24"/></g><g transform="translate(320 0) scale(-1 1)"><g class="hand-right"><path d="M12 169 68 126Q77 118 87 110L124 88Q130 85 133 90Q135 94 129 99L111 113Q108 116 112 118L139 102Q145 99 148 104Q149 108 144 113L117 139Q103 154 85 154L40 189Z"/><path d="m81 139 30-24"/></g></g></svg>`;
+  // 同一套五指、掌面和腕部的图形用于捧、揉、撒，避免手势语言不一致。
+  function craftHands() {
+    const palm=`<path class="palm-fill" d="M54 153V127Q43 116 35 101L22 83Q18 76 24 72Q29 68 35 74L53 93V43Q53 35 60 35Q67 35 67 43V73H69V25Q69 17 76 17Q83 17 83 25V70H85V32Q85 24 92 24Q99 24 99 32V76H101V48Q101 40 108 40Q115 40 115 48V99Q115 118 103 129V153Z"/><path class="palm-line" d="M59 103Q78 94 101 101M64 119Q78 125 94 119M56 94l10 8"/>`;
+    return `<svg class="craft-hands" viewBox="0 0 360 250" aria-hidden="true"><g transform="translate(37 51) rotate(45 77 95) scale(.82)"><g class="hand-left">${palm}</g></g><g transform="translate(360 0) scale(-1 1)"><g transform="translate(37 51) rotate(45 77 95) scale(.82)"><g class="hand-right">${palm}</g></g></g></svg>`;
   }
 
   function craftEvidence() {
@@ -37,19 +38,5 @@
     return `<aside class="craft-evidence"><p class="eyebrow">In the hands of a maker / 真实技艺</p><h4>动画之外，看见真正的手艺。</h4><a href="${media.image}" target="_blank" rel="noopener" aria-label="放大查看蒙山茶真实制茶工序照片"><img src="${media.image}" alt="${media.alt}" width="${media.width}" height="${media.height}" loading="lazy"><span>放大看工序 ↗</span></a><p>${media.caption}</p><a class="craft-source" href="${media.source}" target="_blank" rel="noopener noreferrer">${media.credit} ↗</a></aside>`;
   }
 
-  const fieldHost = document.querySelector('#field-notebook');
-  function renderField(index=0) {
-    if (!fieldHost) return;
-    const entry = content.fieldNotes[index];
-    fieldHost.innerHTML = `<div class="field-visual"><img src="${entry.image}" alt="${entry.alt}" width="${entry.width}" height="${entry.height}" loading="lazy"><span class="field-image-label">Ya’an field notes / ${String(index+1).padStart(2,'0')}</span></div><div class="field-copy"><p class="eyebrow">来自雅安的采风手记</p><h3>${entry.title}</h3><p>${entry.text}</p><span class="field-location">${entry.place} · 作者采风摄影</span><div class="field-selectors" role="group" aria-label="翻阅雅安采风影像">${content.fieldNotes.map((note,i)=>`<button type="button" data-field="${i}" aria-pressed="${index===i}"><span>0${i+1}</span>${note.label}</button>`).join('')}</div><p class="field-closing">四川雅安，在山与世界之间。</p></div>`;
-  }
-  fieldHost?.addEventListener('click',event=>{
-    const button=event.target.closest('[data-field]');
-    if(!button)return;
-    const index=Number(button.dataset.field);
-    renderField(index);
-    fieldHost.querySelector(`[data-field="${index}"]`).focus({preventScroll:true});
-  });
-  renderField();
   window.QiyeDetails = {gardenMarkup,craftHands,craftEvidence};
 })();

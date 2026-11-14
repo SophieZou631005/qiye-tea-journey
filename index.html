@@ -12,14 +12,17 @@
   <title>七叶 QIYE · 四川雅安，在山与世界之间</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="assets/geist-regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=20261114.2">
-  <link rel="stylesheet" href="exhibit.css?v=20261114.2">
-  <link rel="stylesheet" href="journey-details.css?v=20261114.2">
+  <link rel="stylesheet" href="styles.css?v=20261115.1">
+  <link rel="stylesheet" href="exhibit.css?v=20261115.1">
+  <link rel="stylesheet" href="journey-details.css?v=20261115.1">
+  <link rel="stylesheet" href="refinement.css?v=20261115.1">
   <script defer src="assets/qrcode.min.js"></script>
-  <script defer src="content.js?v=20261114.2"></script>
-  <script defer src="gallery.js?v=20261114.2"></script>
-  <script defer src="journey-details.js?v=20261114.2"></script>
-  <script defer src="app.js?v=20261114.2"></script>
+  <script defer src="content.js?v=20261115.1"></script>
+  <script defer src="gallery.js?v=20261115.1"></script>
+  <script defer src="journey-details.js?v=20261115.1"></script>
+  <script defer src="tea-atlas.js?v=20261115.1"></script>
+  <script defer src="experience-gallery.js?v=20261115.1"></script>
+  <script defer src="app.js?v=20261115.1"></script>
 </head>
 <body id="top">
   <a class="skip" href="#journey">跳到茶路互动</a>
@@ -43,7 +46,10 @@
     <p class="mobile-menu-end">七株茶，万里路。<br>下一站，与你。</p>
   </dialog>
   <main>
-    <section class="hero wrap" aria-labelledby="hero-title">
+    <section class="hero hero-panorama" aria-labelledby="hero-title">
+      <img class="hero-landscape" src="assets/field-2026/hero-panorama.webp" alt="雅安茶山的大幅采风摄影，起伏的茶垄延伸至雾中远山" width="2800" height="1866" fetchpriority="high">
+      <div class="hero-shade" aria-hidden="true"></div>
+      <div class="hero-panorama-inner wrap">
       <div class="hero-copy">
         <p class="eyebrow"><span></span> 四川雅安 · 在山与世界之间</p>
         <h1 id="hero-title">七株茶，<br>万里路<span class="gold">。</span></h1>
@@ -52,12 +58,13 @@
         <span class="quiet hero-time">五段故事 · 一篓茶物 · 一张专属茶路卡</span>
       </div>
       <div class="hero-visual">
-        <span class="hero-orbit" aria-hidden="true"></span>
-        <div class="hero-location">SICHUAN · YA’AN<br><span>在山与世界之间</span></div>
+        <span class="hero-companion-label">你的茶路同行者</span>
+        <div class="hero-location">QIYE<br><span>带着来处，走向世界</span></div>
         <svg class="hero-character" viewBox="0 0 760 770" role="img" aria-label="七叶：七片舒展的茶叶、温柔的小脸与层叠茶山轮廓，背着竹编茶篓望向远方"><defs><clipPath id="hero-crop"><path d="M400 0H760V770H0V155H400Z"/></clipPath></defs><image href="assets/qiye-design.png" width="1536" height="1024" clip-path="url(#hero-crop)"/></svg>
         <div class="hero-caption"><span class="tiny-leaf" aria-hidden="true">❧</span> 携茶而行，向世界生长 <span>QIYE / 01</span></div>
       </div>
-      <div class="hero-bottom"><span>始于蒙顶，行于人间</span><a href="#journey" aria-label="向下探索茶路">向下探索 <span>↓</span></a><span>WORLD TEA ORIGIN</span></div>
+      </div>
+      <div class="hero-bottom wrap"><span>始于蒙顶，行于人间</span><a href="#journey" aria-label="向下探索茶路">向下探索 <span>↓</span></a><span>WORLD TEA ORIGIN</span></div>
     </section>
 
     <section class="journey-section" id="journey" aria-labelledby="journey-title">
@@ -86,6 +93,11 @@
       </div>
     </section>
 
+    <section class="ip-archive-section wrap" aria-labelledby="ip-archive-title">
+      <div class="section-heading"><div><p class="eyebrow">The story behind Qiye / 七叶的故事档案</p><h2 id="ip-archive-title">记住来处，<br>才知道向哪里生长。</h2></div><p class="section-aside">从文化原型，到角色轮廓，<br>再到一段可以同行的旅程。</p></div>
+      <div id="ip-archive"></div>
+    </section>
+
     <section class="landscape-section yaan-landscape" aria-labelledby="yaan-title">
       <img src="assets/yaan/mountain-mist.webp" width="1920" height="1248" alt="用户提供的雅安摄影：层叠茶田、山林与远处云海" loading="lazy">
       <div class="landscape-caption"><p class="eyebrow">Sichuan · Ya’an / 四川雅安</p><h2 id="yaan-title">在山与<br>世界之间。</h2><p>山雾起时，茶的故事也开始生长。</p></div>
@@ -101,14 +113,14 @@
     </section>
 
     <section class="field-section wrap" aria-labelledby="field-title">
-      <div class="section-heading"><div><p class="eyebrow">Ya’an, through our eyes / 实地采风</p><h2 id="field-title">走进风景，才读懂故事。</h2></div><p class="section-aside">山色、街巷与林间生命。<br>在真实的雅安，让文化有可感的来处。</p></div>
+      <div class="section-heading"><div><p class="eyebrow">Ya’an, through our eyes / 实地采风</p><h2 id="field-title">走进风景，<br>才读懂故事。</h2></div><p class="section-aside">山色、街巷与林间生命。<br>在真实的雅安，让文化有可感的来处。</p></div>
       <div class="field-notebook" id="field-notebook"></div>
     </section>
 
     <section class="landscape-section origin-landscape" aria-labelledby="origin-title">
-      <img src="assets/field/tea-origin.webp" width="2400" height="1399" alt="作者提供的雅安茶山摄影：雾中山峦、层叠茶田和穿行其间的桥梁" loading="lazy">
+      <img src="assets/field/tea-origin.webp" width="2400" height="1399" alt="雅安采风摄影：雾中山峦、层叠茶田和穿行其间的桥梁" loading="lazy">
       <div class="landscape-caption"><p class="eyebrow">A real place, a living culture</p><h2 id="origin-title">叶有来处，<br>故事有根。</h2><p>四川 · 雅安 / 从一座茶山，走向世界。</p></div>
-      <span class="photo-credit">雅安实地采风 · 作者提供摄影</span>
+      <span class="photo-credit">雅安实地采风 · 采风摄影</span>
     </section>
 
     <section class="collection-section wrap" id="collection" aria-labelledby="collection-title">
@@ -125,6 +137,15 @@
       <div class="exhibit-grid" id="products"></div>
       <div class="gallery-more"><button class="button secondary" id="show-more">展开全部设计 <span>↓</span></button></div>
       <div class="collection-end"><p>图为作者提供的设计效果图。材质、尺寸与工艺属于设计意向，以后续打样为准。</p><a class="text-link" href="#journey" id="go-share">把我的心意，写进茶路卡 <span>↗</span></a></div>
+    </section>
+
+    <section class="scenario-section wrap" id="scenarios" aria-labelledby="scenario-title">
+      <div class="section-heading"><div><p class="eyebrow">Qiye in place / 场景应用提案</p><h2 id="scenario-title">让七叶，<br>走进下一次相遇。</h2></div><p class="section-aside">一处茶山边的相遇，<br>一间承接日常的文创空间。</p></div>
+      <div class="scenario-grid">
+        <figure><button type="button" data-scenario="0" aria-label="完整查看茶山景区场景效果图"><img src="assets/scenarios/mountain-tea-shop.webp" alt="七叶IP与茶礼产品在茶山景区商店中的场景设计效果图" width="2048" height="1152" loading="lazy"><span>完整查看场景 ↗</span></button><figcaption><span>01 / 茶山相遇</span><h3>在风景里，带走一份茶的记忆。</h3><p>角色装置、茶礼陈列与随行小物，构成一次认识雅安的入口。</p></figcaption></figure>
+        <figure><button type="button" data-scenario="1" aria-label="完整查看文创空间场景效果图"><img src="assets/scenarios/qiye-cultural-store.webp" alt="七叶文创空间的场景设计效果图，展墙、挂旗与茶杯礼盒形成统一品牌表达" width="2048" height="1152" loading="lazy"><span>完整查看场景 ↗</span></button><figcaption><span>02 / 茶物入城</span><h3>从一座山，到一间可以相遇的空间。</h3><p>将七叶的故事延伸至展墙、包装和器物，让文化有更多被使用与讲述的机会。</p></figcaption></figure>
+      </div><p class="scenario-note">以上为项目提供的场景设计效果图，呈现IP与文创的应用想象。</p>
+      <a class="button primary" href="#journey" data-jump-chapter="4">把这份雅安记忆，写进我的茶路卡 <span>↗</span></a>
     </section>
 
     <section class="sources-section wrap" id="about-project">
@@ -144,6 +165,7 @@
   <dialog id="qr-dialog" aria-labelledby="qr-title"><button class="dialog-close" data-close aria-label="关闭二维码">×</button><p class="eyebrow">Let the journey begin</p><h2 id="qr-title">把茶路，带到手机上。</h2><div id="site-qr" class="qr-code"></div><p>扫码，走进四川雅安的茶文化故事。</p><div class="dialog-actions"><button class="button primary" id="download-qr">保存二维码</button><button class="button secondary" id="copy-link">复制链接</button></div><p class="quiet">固定前往 GitHub 公开入口 · 无需登录</p></dialog>
   <dialog id="design-dialog" class="design-dialog" aria-label="完整七叶设计展板"><button class="dialog-close" data-close aria-label="关闭设计图">×</button><img src="assets/qiye-design.png" alt="七叶完整设计展板"></dialog>
   <dialog id="card-dialog" aria-labelledby="card-title"><button class="dialog-close" data-close aria-label="关闭茶路卡">×</button><h2 id="card-title">你的今日茶路卡</h2><img id="card-preview" alt="生成的七叶专属茶路卡"><div class="dialog-actions"><button class="button primary" id="save-card">保存图片 ↓</button><button class="button secondary" id="native-share">分享心意 ↗</button></div><p class="quiet" id="save-tip">若浏览器打开了图片，可长按图片保存。</p></dialog>
+  <dialog id="photo-dialog" class="photo-dialog" aria-labelledby="photo-view-title"><div class="photo-dialog-head"><h2 id="photo-view-title">雅安影像</h2><button class="dialog-close" data-close aria-label="关闭影像">×</button></div><img id="photo-view-image" alt=""><div class="photo-dialog-bottom"><button type="button" id="photo-view-prev" aria-label="查看上一张影像">←</button><p id="photo-view-caption" aria-live="polite"></p><button type="button" id="photo-view-next" aria-label="查看下一张影像">→</button></div></dialog>
   <div class="toast" role="status" id="toast"></div>
   <noscript><p class="noscript">请启用 JavaScript 以体验互动。也可直接查阅 <a href="https://www.ihchina.cn/project_details/23781.html">蒙山茶传统制作技艺资料</a>。</p></noscript>
 </body>
