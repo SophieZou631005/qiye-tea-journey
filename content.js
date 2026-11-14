@@ -14,7 +14,7 @@ window.QIYE_CONTENT = {
       note: '吴理真手植七株茶树为地方传说与传统记忆；七叶是据此创作的幻想角色。',
       quote: '每一片叶，都记得最初的山。',
       journal: '出发前，我想先记住来处。请和我一起，种下七株小小的记忆。',
-      task: '轻触七枚茶种，让记忆在山间发芽。',
+      task: '落种、润雨、见光，和七叶一起照料一座记忆茶山。',
       sourceIds: ['history'], productId: 'seven-leaf-sculpture'
     },
     {
@@ -58,6 +58,25 @@ window.QIYE_CONTENT = {
       sourceIds: ['unesco'], productId: 'tea-road-stamps'
     }
   ],
+  // 生长是一段文化意象，以三个不同动作代替七次重复点击。
+  gardenSteps: [
+    {eyebrow:'01 / 把记忆交给山', title:'一同落种，记住来处。', text:'七株茶树，是一个故事共同的起点。将七枚茶种放进同一座山，让故事从此生根。', action:'把七枚茶种交给山'},
+    {eyebrow:'02 / 让云雾化作雨', title:'山雨落下，记忆苏醒。', text:'一场细雨，让沉睡的茶种抽出新芽。轻推云层，看雨丝沿着山势落下。', action:'轻点，让山雨落下'},
+    {eyebrow:'03 / 让新绿遇见光', title:'拂开山雾，等一片新绿。', text:'雨已润过茶山。让光落进叶间，七株记忆便在同一座山里舒展开来。', action:'拂开山雾，让光进来'},
+    {eyebrow:'七株记忆 / 已在此生根', title:'一座山，生长出七叶的远行。', text:'从种下到生长，记忆因照料而延续。七叶带着这份来处，准备走向世界。', action:'再照料一次这座山'}
+  ],
+  craftMedia: {
+    image:'assets/craft/mengshan-process.webp', width:800, height:536,
+    alt:'蒙山茶真实工序组图：红锅杀青、三炒三揉、做形提毫与烘焙提香，制茶师在锅边以双手操作芽叶。',
+    caption:'蒙山茶制作技艺流程工序（部分）。真实工艺包含火候、芽叶状态与手法配合；互动仅取捧、揉、撒三个动作意象。',
+    credit:'图源：中国非遗网 · 查看原文', source:'https://www.ihchina.cn/news_1_details/27436.html'
+  },
+  // 作者提供的实地采风摄影；命名根据画面内容整理。
+  fieldNotes: [
+    {label:'山色', title:'山，是一片叶的来处。', text:'茶垄沿山势展开，桥梁从雾里穿过。古老的茶山与今天的往来，在同一幅风景里相遇。', place:'雅安 · 茶山采风', image:'assets/field/tea-hills.webp', alt:'雅安实地采风：绿色茶垄、远山与穿行山间的桥梁', width:1600, height:1200},
+    {label:'古镇', title:'路，留在日常的纹理里。', text:'雨后的石板、深深的木檐，仍留着生活的温度。让七叶走入真实街巷，茶路的故事便有了可以亲近的尺度。', place:'雅安 · 望鱼古镇采风', image:'assets/field/old-town.webp', alt:'望鱼古镇雨后的石板街巷与两侧木构老屋', width:1068, height:1600},
+    {label:'共生', title:'在同一片绿意里，<br>慢下来。', text:'从茶山到林间，目光也从一片叶走向更多生命。雅安的吸引力，既在文化的延续，也在这份值得珍惜的自然日常。', place:'雅安 · 熊猫基地采风', image:'assets/field/forest-life.webp', alt:'作者采风摄影：林间一只大熊猫低头走过草地', width:1200, height:1600}
+  ],
   // 生活主题不标具体点位；摄影为用户提供的网络素材，文创仍为设计提案。
   cityMoments: [
     {
@@ -84,6 +103,7 @@ window.QIYE_CONTENT = {
   ],
   sources: [
     { id: 'history', title: '“茶城”雅安：中国茶史浓缩于此', publisher: '雅安市人民政府', url: 'https://www.yaan.gov.cn/zhangzhe/show/2c64889b-da94-4cad-8152-e9b4eabcc631.html' },
+    { id: 'craft-image', title: '知节气 识茶事 和天下丨芒种：麦浪飘香 茶润仲夏', publisher: '中国非物质文化遗产网', url: 'https://www.ihchina.cn/news_1_details/27436.html' },
     { id: 'craft', title: '绿茶制作技艺（蒙山茶传统制作技艺）', publisher: '中国非物质文化遗产网', url: 'https://www.ihchina.cn/project_details/23781.html' },
     { id: 'unesco', title: '中国传统制茶技艺及其相关习俗', publisher: '联合国教科文组织', url: 'https://ich.unesco.org/en/RL/traditional-tea-processing-techniques-and-associated-social-practices-in-china-01884' },
     { id: 'route', title: '川藏茶马古道及其多条路径', publisher: '中国民族博物馆', url: 'https://www.cnmuseum.com/cn/category/2509/0378-1.htm' },

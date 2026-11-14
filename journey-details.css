@@ -1,0 +1,146 @@
+/* 追加细节层，不改原有揉转动画、品牌色与五章架构。 */
+.memory-garden { --rain-progress: 0; margin-top: 24px; }
+.garden-scene { position: relative; background: #EEF1E6; border-radius: 16px; overflow: hidden; }
+.garden-scene svg { width: 100%; height: auto; display: block; }
+.garden-scene-note { position: absolute; left: 16px; bottom: 12px; font-size: 12px; line-height: 16px; color: #627251; }
+.garden-tree { transform-box: fill-box; transform-origin: 50% 100%; transform: scale(0); opacity: 0; }
+.tree-stem { fill: none; stroke: #728B68; stroke-width: 2; }
+.tree-vein { fill: none; stroke: #EAE8DF; stroke-width: .7; opacity: .6; }
+.garden-seed { fill: #9B815D; opacity: 0; }
+.garden-cloud { opacity: .9; transition: transform 1.2s var(--motion),opacity 1.2s var(--motion); }
+.garden-rain { opacity: 0; }
+.garden-sun { opacity: 0; transition: opacity 1.2s var(--motion); }
+.garden-phase-1 .garden-seed { animation: seed-settle 900ms var(--motion) both; animation-delay: calc(var(--order)*90ms); }
+.garden-phase-1 .garden-cloud { transform: translateX(calc(var(--rain-progress)*-30px)); }
+.garden-phase-1 .garden-rain { opacity: var(--rain-progress); }
+.garden-phase-2 .garden-tree { opacity: 1; transform: scale(.5); animation: young-growth 1.2s var(--motion) both; animation-delay: calc(var(--order)*80ms); }
+.garden-phase-2 .garden-rain { opacity: .65; animation: rain-leaving 2s var(--motion) both; }
+.garden-phase-2 .garden-cloud { opacity: .65; }
+.garden-phase-3 .garden-tree { opacity: 1; transform: scale(1); animation: memory-growth 1.6s var(--motion) both; animation-delay: calc(var(--order)*100ms); }
+.garden-phase-3 .garden-cloud { opacity: .18; transform: translateX(-80px); }
+.garden-phase-3 .garden-sun { opacity: .8; }
+.garden-phase-3 .garden-scene { background: #F2F3E5; }
+.garden-steps { list-style: none; padding: 0; margin: 16px 0 24px; display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
+.garden-steps li { padding: 8px 0; display: flex; align-items: center; gap: 8px; font-size: 12px; line-height: 20px; color: var(--muted); }
+.garden-steps span { font-variant-numeric: tabular-nums; color: #9BA78E; }
+.garden-steps li[aria-current], .garden-steps .is-done { color: var(--ink); }
+.garden-steps b { font-weight: 400; color: var(--green); }
+.garden-story h4 { font-size: 24px; line-height: 32px; font-weight: 500; margin: 8px 0; text-wrap: balance; }
+.garden-story > p:last-child { font-size: 14px; line-height: 24px; color: var(--muted); min-height: 48px; }
+.garden-story .eyebrow { font-size: 12px; letter-spacing: .04em; }
+.garden-action { min-height: 48px; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 16px; margin-top: 24px; background: var(--ink); color: var(--surface); border: 1px solid var(--ink); border-radius: 12px; font-size: 14px; line-height: 20px; transition: background 300ms var(--motion), transform 500ms var(--motion); }
+.garden-action:hover { background: #4E6447; }
+.garden-action:active { transform: scale(.98); }
+.garden-footnote { font-size: 12px; line-height: 20px; color: var(--muted); margin-top: 12px; }
+.rain-control { margin-top: 24px; padding: 16px; background: #EEF1E6; border-radius: 12px; }
+.rain-control label { display: flex; justify-content: space-between; gap: 12px; font-size: 12px; line-height: 20px; }
+.rain-control output { color: var(--green); min-width: 32px; font-variant-numeric: tabular-nums; text-align: right; }
+.rain-control input { display: block; width: 100%; height: 32px; margin: 12px 0 0; accent-color: #728B68; cursor: ew-resize; }
+.rain-control p { font-size: 12px; line-height: 20px; color: var(--muted); }
+@keyframes seed-settle { from { opacity: 0; transform: translateY(-65px); } 65% { opacity: 1; transform: translateY(3px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes young-growth { from { opacity: 0; transform: scale(.05); } to { opacity: 1; transform: scale(.5); } }
+@keyframes memory-growth { from { opacity: .5; transform: scale(.5); } to { opacity: 1; transform: scale(1); } }
+@keyframes rain-leaving { from { opacity: .7; transform: translateY(-16px); } to { opacity: 0; transform: translateY(24px); } }
+/* 捧与撒：器皿保持稳定，芽叶与双手形成动作关系。揉沿用 styles.css。 */
+.craft-stage { height: 256px; margin-block: 8px; }
+.craft-stage .tea-bowl.motion-lift { animation: none; }
+.craft-stage .tea-bowl.motion-lift i { animation: qiye-cup-leaves 3.6s var(--motion) both; transition: none; }
+.craft-stage .tea-bowl.motion-release i { --scatter-x: calc((var(--leaf) - 3.5)*11px); animation: qiye-scatter-leaves 3.6s var(--motion) both; animation-delay: calc(var(--leaf)*45ms); transition: none; }
+.craft-hands { position: absolute; width: 300px; height: 188px; max-width: 100%; top: 48px; left: 50%; transform: translateX(-50%); overflow: visible; pointer-events: none; }
+.craft-hands path { fill: #EAE8DF; stroke: #8C9B7B; stroke-width: 1.3; stroke-linejoin: round; stroke-linecap: round; }
+.craft-hands path + path { fill: none; opacity: .6; }
+.hand-left, .hand-right { opacity: 0; }
+.gesture-lift .hand-left, .gesture-lift .hand-right { animation: qiye-cup-hands 3.6s var(--motion) both; }
+.gesture-release .hand-left, .gesture-release .hand-right { animation: qiye-open-hands 3.6s var(--motion) both; }
+.craft-motion-note { position: absolute; bottom: 8px; left: 0; right: 0; text-align: center; font-size: 12px; line-height: 20px; letter-spacing: .12em; color: var(--muted); }
+.craft-replay-hint { text-align: right; font-size: 12px; line-height: 20px; color: var(--muted); margin-top: 12px; }
+.craft-info { margin-top: 8px; }
+@keyframes qiye-cup-leaves {
+  0%, 8% { transform: rotate(calc(var(--i)*30deg)); }
+  26% { transform: translate(var(--gather-x),var(--gather-y)) rotate(calc(var(--i)*30deg + 20deg)) scale(.85); }
+  48%, 63% { transform: translate(var(--gather-x),calc(var(--gather-y) - 65px)) rotate(calc(var(--i)*30deg - 12deg)) scale(.85); }
+  82% { transform: translate(calc(var(--gather-x)*.5),calc(var(--gather-y)*.5)) rotate(calc(var(--i)*30deg + 8deg)); }
+  100% { transform: rotate(calc(var(--i)*30deg)); }
+}
+@keyframes qiye-cup-hands {
+  0% { opacity: 0; transform: translate(-24px,24px); }
+  20% { opacity: 1; transform: translate(14px,0); }
+  48%, 63% { opacity: 1; transform: translate(22px,-58px); }
+  83% { opacity: 1; transform: translate(14px,0); }
+  100% { opacity: 0; transform: translate(-24px,24px); }
+}
+@keyframes qiye-scatter-leaves {
+  0%, 18% { transform: translate(var(--gather-x),calc(var(--gather-y) - 60px)) rotate(calc(var(--i)*30deg)) scale(.8); }
+  38% { transform: translate(calc(var(--gather-x) + var(--scatter-x)*.5),calc(var(--gather-y) - 85px)) rotate(calc(var(--leaf)*45deg + 50deg)) scale(.9); }
+  68% { transform: translate(var(--scatter-x),12px) rotate(calc(var(--leaf)*50deg + 135deg)); }
+  83% { transform: translate(calc(var(--scatter-x)*.65),-5px) rotate(calc(var(--leaf)*50deg + 160deg)); }
+  100% { transform: translate(calc(var(--scatter-x)*.6),0) rotate(calc(var(--leaf)*50deg + 180deg)); }
+}
+@keyframes qiye-open-hands {
+  0%, 18% { opacity: 1; transform: translate(22px,-58px); }
+  43% { opacity: 1; transform: translate(-28px,-40px) rotate(-10deg); }
+  75%, 100% { opacity: 0; transform: translate(-52px,16px) rotate(-16deg); }
+}
+.chapter:has(.craft-evidence) .interaction { align-self: start; }
+.craft-evidence { margin-top: 32px; padding: 24px; border-radius: 16px; background: #E8EDDF; }
+.craft-evidence h4 { font-size: 20px; line-height: 28px; font-weight: 500; margin: 8px 0 16px; }
+.craft-evidence > a:first-of-type { display: block; position: relative; }
+.craft-evidence img { width: 100%; height: auto; border-radius: 8px; }
+.craft-evidence > a:first-of-type span { position: absolute; bottom: 8px; right: 8px; background: var(--surface); color: var(--ink); padding: 4px 8px; border-radius: 8px; font-size: 12px; line-height: 20px; }
+.craft-evidence > p:not(.eyebrow) { font-size: 12px; line-height: 20px; color: var(--muted); margin-top: 12px; }
+.craft-source { display: inline-block; font-size: 12px; line-height: 20px; margin-top: 12px; text-underline-offset: 4px; }
+/* 实地采风手记与“叶有来处”摄影段落。 */
+.field-section { padding-block: 32px 80px; }
+.field-notebook { display: grid; grid-template-columns: 1.15fr 1fr; gap: 48px; align-items: center; margin-top: 32px; }
+.field-visual { position: relative; overflow: hidden; background: #E8EDDF; border-radius: 16px; }
+.field-visual > img { display: block; width: 100%; height: 480px; object-fit: cover; }
+.field-visual:has(img[src*="old-town"]) > img { object-position: center 60%; }
+.field-image-label { position: absolute; bottom: 16px; left: 16px; padding: 8px 12px; border-radius: 8px; background: #F7F8F0E8; color: var(--ink); font-size: 12px; line-height: 16px; letter-spacing: .04em; }
+.field-copy h3 { font-size: 36px; line-height: 40px; margin-block: 16px 24px; font-weight: 500; text-wrap: balance; }
+.field-copy > p:not(.eyebrow):not(.field-closing) { font-size: 16px; line-height: 28px; color: var(--muted); }
+.field-location { display: block; margin-top: 24px; color: var(--green); font-size: 12px; line-height: 20px; }
+.field-selectors { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px; }
+.field-selectors button { display: flex; align-items: center; gap: 12px; background: transparent; border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px; font-size: 14px; line-height: 20px; transition: background 300ms var(--motion),color 300ms var(--motion); }
+.field-selectors button span { font-size: 12px; }
+.field-selectors button:hover { background: #E8EDDF; }
+.field-selectors button[aria-pressed=true] { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+.field-closing { margin-top: 32px; font-size: 14px; line-height: 24px; color: var(--green); }
+.origin-landscape { height: 560px; }
+.origin-landscape > img { object-position: center 65%; filter: brightness(.73) saturate(.9); }
+.origin-landscape .landscape-caption { top: 80px; }
+.origin-landscape .landscape-caption h2 { font-size: 72px; line-height: 1; }
+@media (max-width:1000px) {
+  .field-notebook { gap: 32px; }
+  .field-visual > img { height: 400px; }
+  .field-copy h3 { font-size: 30px; line-height: 36px; }
+}
+@media (max-width:680px) {
+  .memory-garden { margin-top: 16px; }
+  .garden-scene-note { font-size: 12px; bottom: 8px; left: 12px; }
+  .garden-story h4 { font-size: 20px; line-height: 28px; }
+  .garden-story > p:last-child { font-size: 14px; line-height: 24px; }
+  .garden-steps { margin-bottom: 16px; }
+  .garden-steps li { gap: 8px; }
+  .garden-action { margin-top: 16px; font-size: 14px; }
+  .craft-stage { height: 240px; }
+  .craft-evidence { padding: 16px; margin-top: 24px; }
+  .field-section { padding-block: 24px 48px; }
+  .field-notebook { grid-template-columns: 1fr; gap: 24px; margin-top: 24px; }
+  .field-visual > img { height: 320px; }
+  .field-copy h3 { font-size: 30px; line-height: 36px; margin-block: 12px 16px; }
+  .field-copy > p:not(.eyebrow):not(.field-closing) { font-size: 14px; line-height: 24px; }
+  .field-selectors { margin-top: 24px; }
+  .field-location, .field-closing { margin-top: 16px; }
+  .origin-landscape { height: 432px; }
+  .origin-landscape .landscape-caption { top: 64px; }
+  .origin-landscape .landscape-caption h2 { font-size: 48px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .garden-tree, .garden-seed, .garden-rain, .craft-stage .tea-bowl.motion-lift i, .craft-stage .tea-bowl.motion-release i, .hand-left, .hand-right { animation: none !important; }
+  .garden-phase-1 .garden-seed { opacity: 1; }
+  .garden-phase-2 .garden-tree { transform: scale(.5); opacity: 1; }
+  .garden-phase-3 .garden-tree { transform: scale(1); opacity: 1; }
+  .craft-stage .tea-bowl.motion-lift i { transform: translate(var(--gather-x),calc(var(--gather-y) - 32px)); }
+  .craft-stage .tea-bowl.motion-release i { transform: translate(calc(var(--scatter-x)*.6),0) rotate(calc(var(--leaf)*50deg + 180deg)); }
+  .garden-cloud, .garden-sun, .garden-action, .field-selectors button { transition: opacity 300ms var(--motion); }
+}

@@ -61,7 +61,7 @@
 
 ## 本地预览
 
-在本目录运行 `python3 -m http.server 8000`，打开 http://localhost:8000。
+在本目录运行 `python3 -m http.server 8000 --directory dist`，打开 http://localhost:8000。
 二维码、复制链接和分享统一指向 https://sophiezou631005.github.io/qiye-tea-journey/ 。即使在原 Sites 入口或本机预览打开网页，保存的二维码也会前往此 GitHub 地址。
 
 ## 本轮使用的设计方法
@@ -75,3 +75,14 @@ Geist 字体：`assets/Geist-LICENSE.txt`。
 
 本轮强调语：四川雅安，在山与世界之间。首页、摄影段落、入城与分享收尾形成呼应。
 本机数据中旧的具体停留点不再显示；已收集印记、草稿和茶篓继续保留。
+
+
+## 2026 年 11 月 14 日细节深化
+
+- 种下：落种、滑动润雨、见光三段互动，七株记忆一同生长；提供按钮替代拖动，兼容旧旅程进度。
+- 采制：捧与撒增加手势和芽叶运动，揉转保留原动画。真实工序组图见 `assets/craft/`，来源链接和图注在 `content.js` 的 `craftMedia`。
+- 采风：`fieldNotes` 维护山色、古镇、共生三组实地摄影条目；`assets/field/tea-origin.webp` 来源为作者指定 DSC_6598.jpg，放在茶物展馆前的“叶有来处，故事有根”段落。
+- 新展示模块在 `journey-details.js`，样式在 `journey-details.css`。五章进度、分享卡、收藏和二维码仍由原模块负责。
+- 公开扫码入口固定为 https://sophiezou631005.github.io/qiye-tea-journey/ ，二维码无需再次更换。GitHub Pages 境内访问仍受当地网络影响。
+
+真实制茶组图引自中国非遗网《知节气 识茶事 和天下丨芒种：麦浪飘香 茶润仲夏》，原文未逐图注明摄影者及开放转载许可。参赛及进一步公开传播需核对授权；未将该图宣称为原创采风。所有摄影已移除 EXIF 元数据后用于网页，原文件未改动。
