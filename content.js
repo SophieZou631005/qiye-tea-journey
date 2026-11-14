@@ -5,7 +5,7 @@
  * 所有产品名称、说明与规格均依据画面内容整理；规格为设计建议。
  */
 window.QIYE_CONTENT = {
-  siteUrl: '', // 自动使用当前部署地址，兼容 GitHub Pages 的项目子目录。
+  siteUrl: 'https://sophiezou631005.github.io/qiye-tea-journey/', // 所有二维码、复制链接和分享统一指向 GitHub 公开入口。
   chapters: [
     {
       id: 'seed', number: '01', name: '种下', eyebrow: '一山 · 七叶',
@@ -39,18 +39,18 @@ window.QIYE_CONTENT = {
     },
     {
       id: 'city', number: '04', name: '入城', eyebrow: '一杯茶 · 一座正在生长的城',
-      title: '走过古道，走进名山的今天。',
-      text: '茶的故事，也在街巷和河岸继续。甘露坊让茶马记忆进入市井生活，名山河滨水空间把休憩与茶文化串在一起。七叶把山间的记忆带回城里，邀你想象一次新的停留。',
-      note: '五个地点来自参赛命题资料；互动中的停留方式为本项目的创意设想，不表示已有对应活动或服务。',
-      quote: '山为底，水为脉，茶为魂。',
+      title: '走过山路，把雅安带进日常。',
+      text: '四川雅安，在山与世界之间。茶从山间走来，也走进我们读书、相聚、出发的普通一天。七叶想带走的不只是一片风景，还有那份愿意慢下来、与人分享的生活温度。',
+      note: '摄影呈现地方氛围，茶物承载生活想象；下方为七叶的文化转译，不对应具体活动或游览路线。',
+      quote: '把一座山的温柔，放回每一天。',
       journal: '今天，我不急着赶路。想在一条河、一条街，和一个愿意一起喝茶的人身边停下。',
-      task: '选择一个城市停留点，再收藏此刻的心境。',
-      sourceIds: ['ganlu', 'riverside', 'teatown'], productId: 'travel-teaware'
+      task: '选一个生活片刻，再收藏此刻的心境。',
+      sourceIds: ['travel', 'unesco'], productId: 'travel-teaware'
     },
     {
       id: 'share', number: '05', name: '分享', eyebrow: '一份心意 · 再次出发',
       title: '下一段茶路，交给你。',
-      text: '一颗茶种的远行，最终回到人与人的相遇。写一句心意，把喜欢的茶物放进自己的茶篓，再将今天的心境与城市停留装进一张卡。让古老的茶，在新的生活里继续生长。',
+      text: '一颗茶种的远行，最终回到人与人的相遇。写一句心意，把喜欢的茶物放进自己的茶篓，再将今天的心境与生活片刻装进一张卡。让古老的茶，在新的生活里继续生长。',
       note: '昵称、留言、心境和茶篓仅保存在当前浏览器。茶路卡为数字纪念，不是商品订单或兑换凭证。',
       quote: '七株茶，万里路；下一站，与你。',
       journal: '我的故事，在你愿意分享的这一刻，才真正有了下一站。',
@@ -58,12 +58,29 @@ window.QIYE_CONTENT = {
       sourceIds: ['unesco'], productId: 'tea-road-stamps'
     }
   ],
-  cityPlaces: [
-    { id: 'ganlu', name: '甘露坊步行街', short: '甘露坊', type: '街巷 · 相遇', scene: 'street', title: '让茶香，走进街巷。', text: '甘露坊将茶马文化展示与街区生活相连。七叶提议：一杯茶、一次盖章，成为陌生人开始交谈的理由。', idea: '七叶的停留提案：街巷集章', productId: 'tea-road-stamps' },
-    { id: 'river', name: '名山河滨水带', short: '名山河', type: '滨水 · 慢行', scene: 'river', title: '把一刻从容，留在河边。', text: '名山河沿岸的公共空间更新，让茶文化进入景观与日常。七叶提议：带一套随行茶器，在漫步后为自己留一个片刻。', idea: '七叶的停留提案：滨水慢茶', productId: 'travel-teaware' },
-    { id: 'town', name: '茶马古城', short: '茶马古城', type: '茶市 · 往来', scene: 'town', title: '在一场相遇里，读懂茶路。', text: '今天的茶马古城集合茶品牌展示、交易与文化体验。七叶提议：以一枚可拼接的建筑磁贴，收藏关于城市的记忆。', idea: '七叶的停留提案：建筑寻茶', productId: 'architecture-magnets' },
-    { id: 'factory', name: '火柴厂工业遗址', short: '火柴厂', type: '旧址 · 新的想象', scene: 'factory', title: '为旧空间，点一盏新灯。', text: '命题将工业遗址列为创意节点。七叶在这里想象一场纸雕光影展，让旧空间的记忆与茶山的层次在光里相遇。', idea: '更新想象：茶山光影展', productId: 'tea-mountain-light' },
-    { id: 'courtyard', name: '原人民医院医养中心旧址', short: '旧址庭院', type: '旧址 · 日常陪伴', scene: 'courtyard', title: '让一件茶物，陪伴新的日常。', text: '以命题中的旧址为起点，七叶提议以阅读、茶叙与可参与的手作为日常内容，想象面向不同年龄的公共相聚空间。', idea: '更新想象：共享茶叙庭院', productId: 'seven-leaf-sculpture' }
+  // 生活主题不标具体点位；摄影为用户提供的网络素材，文创仍为设计提案。
+  cityMoments: [
+    {
+      id: 'tea-time', name: '一席茶间', type: '窗影 · 茶香',
+      title: '让山间的茶香，回到一席日常。',
+      text: '光穿过窗棂，落在安静的一刻。七叶把茶芽与茶篓的记忆带上杯身，让一次普通的饮茶，也成为与雅安相遇的方式。',
+      image: 'assets/yaan/window-light.webp', alt: '绿叶掩映下的木质窗棂与柔和光影',
+      photoNote: '雅安印象 · 窗影与新绿', productId: 'travel-teaware'
+    },
+    {
+      id: 'slow-walk', name: '一刻慢行', type: '树影 · 远行',
+      title: '走得再远，也记得一座山。',
+      text: '顺着树影往前走，暂时把匆忙放在身后。一枚系在行李上的七叶茶牌，像一封写给远方的短信：我从四川雅安的故事里出发。',
+      image: 'assets/yaan/forest-walk.webp', alt: '绿树与青苔环绕的山间石阶步道',
+      photoNote: '雅安印象 · 山间慢行', productId: 'journey-tag'
+    },
+    {
+      id: 'shared-story', name: '一份心意', type: '门庭 · 相遇',
+      title: '让一份心意，把雅安带向世界。',
+      text: '一扇门连接内外，一件茶物连接彼此。把七叶、茶山和茶路的故事装进礼盒，让收到它的人，也愿意听一听雅安的名字。',
+      image: 'assets/yaan/courtyard-light.webp', alt: '树荫下的红色院门、石阶和青苔',
+      photoNote: '雅安印象 · 门庭光阴', productId: 'qiye-story-gift'
+    }
   ],
   sources: [
     { id: 'history', title: '“茶城”雅安：中国茶史浓缩于此', publisher: '雅安市人民政府', url: 'https://www.yaan.gov.cn/zhangzhe/show/2c64889b-da94-4cad-8152-e9b4eabcc631.html' },
@@ -71,9 +88,6 @@ window.QIYE_CONTENT = {
     { id: 'unesco', title: '中国传统制茶技艺及其相关习俗', publisher: '联合国教科文组织', url: 'https://ich.unesco.org/en/RL/traditional-tea-processing-techniques-and-associated-social-practices-in-china-01884' },
     { id: 'route', title: '川藏茶马古道及其多条路径', publisher: '中国民族博物馆', url: 'https://www.cnmuseum.com/cn/category/2509/0378-1.htm' },
     { id: 'travel', title: '四川·雅安“世界茶源寻根”之旅', publisher: '文化和旅游部', url: 'https://zhuanti.mct.gov.cn/xczgshsh2023/cxyh/detail_cha/3865.html' },
-    { id: 'ganlu', title: '名山甘露坊：茶文化走入街巷', publisher: '四川在线·川观新闻', url: 'https://sichuan.scol.com.cn/xwtg/202501/82882326.html' },
-    { id: 'riverside', title: '名山河滨水空间与城市更新', publisher: '四川在线', url: 'https://sichuan.scol.com.cn/ggxw/202609/83315413.html' },
-    { id: 'teatown', title: '四川名山茶旅线路', publisher: '农业农村部', url: 'https://gjcr.moa.gov.cn/cty/202005/t20200519_6344521.htm' },
     { id: 'sandware', title: '陶器烧制技艺（荥经砂器烧制技艺）', publisher: '中国非物质文化遗产网', url: 'https://www.ihchina.cn/project_details/14455/' }
   ],
   categories: [

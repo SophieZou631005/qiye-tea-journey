@@ -231,3 +231,53 @@ button.text-link { background: transparent; border: 0; border-bottom: 1px solid 
 .exhibit-grid.is-compact .exhibit-card:nth-child(6n+1) { grid-column: auto; display: block; }
 .exhibit-grid.is-compact .exhibit-card:nth-child(6n+1) .exhibit-copy { padding-top: 16px; }
 .exhibit-grid.is-compact .exhibit-card:nth-child(6n+1) .exhibit-copy h3 { font-size: 24px; line-height: 32px; margin-top: 8px; }
+/* 2026.11 / 雅安摄影与生活片刻。真实影像与独立的文创提案并置。 */
+.hero-copy .eyebrow { font-size: 14px; line-height: 20px; color: var(--ink); letter-spacing: .04em; }
+.yaan-landscape { height: 560px; }
+.yaan-landscape > img { object-position: center 46%; filter: brightness(.78) saturate(.85); }
+.yaan-landscape .landscape-caption h2 { font-size: 72px; line-height: 1; margin-block: 24px; }
+.yaan-landscape .landscape-caption > p:last-child { font-size: 16px; line-height: 24px; }
+.yaan-photo-pair { display: grid; grid-template-columns: .7fr 1fr; gap: 16px; align-items: center; }
+.yaan-photo-pair figure { margin: 0; min-width: 0; }
+.yaan-photo-pair img { width: 100%; object-fit: cover; border-radius: 16px; }
+.yaan-photo-pair figure:first-child img { aspect-ratio: 2/3; }
+.yaan-photo-pair figure:last-child img { aspect-ratio: 4/5; }
+.yaan-photo-pair figcaption { font-size: 12px; line-height: 20px; color: var(--muted); margin-top: 12px; }
+.city-bridge-copy h2 { font-size: 36px; line-height: 40px; margin-bottom: 24px; }
+.city-bridge-copy > p:not(.eyebrow):not(.city-bridge-motto) { font-size: 16px; line-height: 24px; color: var(--muted); }
+.city-moment-options { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+.city-moment-options button { min-height: 40px; border: 1px solid var(--line); border-radius: 9999px; background: transparent; padding: 8px 16px; font-size: 14px; line-height: 20px; transition: background 300ms var(--motion), color 300ms var(--motion); }
+.city-moment-options button:hover { background: #edf1e4; }
+.city-moment-options button[aria-pressed=true] { color: var(--surface); background: var(--ink); border-color: var(--ink); }
+.city-photograph { margin: 24px 0 0; background: #e9ede2; border-radius: 16px; overflow: hidden; }
+.city-photograph img { width: 100%; height: auto; aspect-ratio: 16/10; object-fit: cover; object-position: center; }
+.city-photograph figcaption { display: flex; justify-content: space-between; gap: 12px; padding: 12px 16px; font-size: 12px; line-height: 16px; color: var(--muted); }
+.city-moment-story { margin-top: 24px; }
+.city-moment-story .eyebrow { letter-spacing: .04em; color: var(--green); }
+.city-moment-story h4 { font-size: 24px; line-height: 32px; font-weight: 500; text-wrap: balance; margin: 8px 0; }
+.city-moment-story > p:not(.eyebrow) { font-size: 14px; line-height: 24px; color: var(--muted); }
+.city-tea-pair { display: grid; grid-template-columns: 96px 1fr 16px; align-items: center; gap: 16px; width: 100%; margin-top: 16px; padding: 12px; background: #f2f4eb; border: 1px solid var(--line); border-radius: 16px; text-align: left; transition: background 300ms var(--motion),transform 500ms var(--motion); }
+.city-tea-pair:hover { background: #e9ede2; transform: translateY(-2px); }
+.city-tea-pair img { width: 96px; height: auto; border-radius: 8px; }
+.city-tea-pair small, .city-tea-pair strong { display: block; }
+.city-tea-pair small { font-size: 12px; line-height: 16px; color: var(--muted); }
+.city-tea-pair strong { margin-top: 4px; font-size: 14px; line-height: 20px; font-weight: 500; }
+.city-tea-pair b { font-size: 16px; font-weight: 400; }
+@media (max-width:680px) {
+  .hero-copy .eyebrow { font-size: 12px; line-height: 20px; letter-spacing: .02em; }
+  .yaan-landscape { height: 432px; }
+  .yaan-landscape .landscape-caption h2 { font-size: 48px; line-height: 1; }
+  .yaan-landscape .landscape-caption > p:last-child { font-size: 14px; line-height: 20px; }
+  .yaan-photo-pair { gap: 16px; }
+  .city-bridge-copy h2 { font-size: 30px; line-height: 36px; margin-top: 16px; }
+  .city-moment-options { gap: 8px; margin-top: 16px; }
+  .city-moment-options button { font-size: 12px; line-height: 20px; padding-inline: 12px; }
+  .city-photograph { margin-top: 16px; }
+  .city-photograph img { aspect-ratio: 4/3; }
+  .city-photograph figcaption { flex-wrap: wrap; gap: 4px 12px; padding: 12px; }
+  .city-moment-story { margin-top: 16px; }
+  .city-moment-story h4 { font-size: 20px; line-height: 28px; }
+  .city-tea-pair { grid-template-columns: 64px 1fr 16px; gap: 12px; }
+  .city-tea-pair img { width: 64px; }
+}
+@media (prefers-reduced-motion:reduce) { .city-tea-pair { transition: opacity 300ms var(--motion); transform: none; } }

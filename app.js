@@ -13,12 +13,12 @@
   const $ = (selector) => document.querySelector(selector);
   const STORAGE_KEY = 'qiye-journey-v1';
   const escapeHTML = (value) => String(value).replace(/[&<>"']/g, (char) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
-  const defaults = () => ({completed:[],seeds:[],craft:[],road:[],mood:'',nickname:'',message:'',cityPlace:-1});
+  const defaults = () => ({completed:[],seeds:[],craft:[],road:[],mood:'',nickname:'',message:'',cityMoment:0});
   const validNumbers = (value, max) => [...new Set(Array.isArray(value) ? value.filter(n => Number.isInteger(n) && n >= 0 && n < max) : [])];
   function loadState() {
     try {
       const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-      return {cityPlace:Number.isInteger(saved.cityPlace)&&saved.cityPlace>=0&&saved.cityPlace<content.cityPlaces.length?saved.cityPlace:-1,completed:validNumbers(saved.completed,5),seeds:validNumbers(saved.seeds,7),craft:validNumbers(saved.craft,3),road:validNumbers(saved.road,4),mood:['独处','相聚','赠予'].includes(saved.mood)?saved.mood:'',nickname:typeof saved.nickname==='string'?saved.nickname.slice(0,14):'',message:typeof saved.message==='string'?saved.message.slice(0,70):''};
+      return {cityMoment:Number.isInteger(saved.cityMoment)&&saved.cityMoment>=0&&saved.cityMoment<content.cityMoments.length?saved.cityMoment:0,completed:validNumbers(saved.completed,5),seeds:validNumbers(saved.seeds,7),craft:validNumbers(saved.craft,3),road:validNumbers(saved.road,4),mood:['独处','相聚','赠予'].includes(saved.mood)?saved.mood:'',nickname:typeof saved.nickname==='string'?saved.nickname.slice(0,14):'',message:typeof saved.message==='string'?saved.message.slice(0,70):''};
     } catch { return defaults(); }
   }
   let state = loadState();
@@ -60,29 +60,20 @@
     return `<svg viewBox="0 0 90 85" aria-hidden="true"><path d="M18 35h45l-6 30c-2 10-29 10-33 0Z" fill="${type===1?'#b9c8a1':'#d7dfc4'}" stroke="#8a9d76"/><path d="M63 40h9c17 0 7 22-12 18" fill="none" stroke="#8a9d76" stroke-width="3"/><ellipse cx="40" cy="35" rx="22" ry="5" fill="#c89b52" opacity=".7"/><path d="M30 25c-10-10 8-10 0-21M43 25c-10-10 8-10 0-21" stroke="#a9b492" fill="none"/>${type===1?'<path d="M3 54h18l-1 20H6Z" fill="#b9c8a1"/>':''}${type===2?'<path d="m63 13 11-6 9 6-9 6Z" fill="#c89b52"/><path d="M74 7v15" stroke="#b58c4e"/>':''}</svg>`;
   }
 
-  // 城市场景为项目原创示意，既不是实景复原，也不提供导航。
-  function cityScene(place) {
-    const scenes = {
-      street: '<path d="M80 150V85h110v65M217 150V61h127v89M365 150V91h111v59"/><path d="m62 85 72-40 74 40m-7-24 79-42 80 42m-12 30 74-39 73 39"/><path d="M105 150v-42h34v42m103 0v-56h39v56m26-43h20v25h-20m85 18v-35h35v35"/><path d="M177 93v31m-7-27h14v19h-14" class="city-gold"/>',
-      river: '<path d="M54 120c110-65 237-65 425-20M82 112v41m28-52v46m29-56v49m29-57v51m29-55v51m29-52v51m29-50v50m29-46v48m29-41v47m29-36v47m29-29v40m29-21v37"/><path d="M54 136c105-57 240-59 425-20"/><path d="M370 63V34m-19 20c-2-22 39-27 41-6-1 21-41 22-41 6Z"/><path d="M84 175c85-20 153-18 232 1m-112-17c72-14 127-9 196 5" class="city-gold"/>',
-      town: '<path d="M88 152V80h111v72m18 0V60h124v92m24 0V81h108v71"/><path d="m65 81 78-44 77 44m-18-21 78-40 78 40m-10 21 72-41 72 41"/><path d="M250 152v-43a29 29 0 0 1 58 0v43M108 100h69v26h-69m278-26h68v26h-68"/><path d="M62 161h439m-423 9h407" class="city-gold"/>',
-      factory: '<path d="M81 155V85l70-35v35l70-35v35l70-35v35h148v70M374 84V28h32v56"/><path d="M104 109h37v24h-37m64-24h37v24h-37m65-24h37v24h-37m64-24h37v24h-37m64-24h37v24h-37"/><path d="M369 27h42m-16-12 9-7m-21 1 1-7M79 164h377" class="city-gold"/>',
-      courtyard: '<path d="M92 155V75h375v80M75 75l43-30h324l42 30M232 155v-54a45 45 0 0 1 90 0v54"/><path d="M117 98h78v29h-78m244-29h78v29h-78m-210 26h105"/><path d="M139 155v-16m-21-4c3-23 41-24 44 0-2 15-42 15-44 0m291 20v-18m-20-4c-3-22 38-24 42-3-1 18-40 20-42 3" class="city-gold"/>'
-    };
-    return `<div class="city-scene"><span>${place.type}</span><svg viewBox="0 0 560 190" aria-hidden="true"><path d="M0 142 52 113 88 126 149 75 219 103 287 59 364 97 430 50 560 106V190H0Z" fill="#e9ede2"/><g fill="none" stroke="#728b68" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">${scenes[place.scene]}</g><path d="M0 179c103-35 185 23 279-5s177-15 281-3" fill="none" stroke="#b9c8a1" stroke-width="2"/></svg><small>七叶城市手记 · 创意场景示意</small></div>`;
-  }
-
+  // 用真实摄影承载地方氛围，配以独立的文创联想；不把设计效果图当作实景。
   function cityMarkup() {
-    const place = content.cityPlaces[Math.max(0, state.cityPlace)];
-    return `<div class="city-place-options" role="group" aria-label="选择名山城市停留点">${content.cityPlaces.map((item, index) => `<button type="button" data-city="${index}" aria-pressed="${state.cityPlace === index}">${item.short}</button>`).join('')}</div>
-      ${cityScene(place)}
-      <div class="city-place-story" aria-live="polite"><p class="eyebrow">${place.name}</p><h4>${place.title}</h4><p>${place.text}</p><div><span>${place.idea}</span><button type="button" class="text-button" data-product-open="${place.productId}">看看对应茶物 ↗</button></div></div>
+    const moment = content.cityMoments[Math.max(0, state.cityMoment)];
+    const product = content.products.find(item => item.id === moment.productId);
+    return `<div class="city-moment-options" role="group" aria-label="选择生活片刻">${content.cityMoments.map((item, index) => `<button type="button" data-city="${index}" aria-pressed="${state.cityMoment === index}">${item.name}</button>`).join('')}</div>
+      <figure class="city-photograph"><img src="${moment.image}" alt="${moment.alt}" width="1260" height="708" loading="lazy"><figcaption><span>${moment.type}</span><span>${moment.photoNote}</span></figcaption></figure>
+      <div class="city-moment-story" aria-live="polite"><p class="eyebrow">四川 · 雅安 / 在山与世界之间</p><h4>${moment.title}</h4><p>${moment.text}</p></div>
+      <button type="button" class="city-tea-pair" data-product-open="${product.id}"><img src="${product.thumb}" alt="" width="128" height="72" loading="lazy"><span><small>让风景成为可带走的记忆 · 文创提案</small><strong>${product.title}</strong></span><b aria-hidden="true">↗</b></button>
       <p class="mood-title">此刻，想与谁分享一杯茶？</p>`;
   }
 
   function basketSummary() {
     const selected = window.QiyeGallery.getSelected();
-    const place = state.cityPlace >= 0 ? content.cityPlaces[state.cityPlace].name : '还未选择城市停留点';
+    const place = state.cityMoment >= 0 ? content.cityMoments[state.cityMoment].name : '四川雅安 · 在山与世界之间';
     return `<span class="eyebrow">我的随行记忆</span><p>${escapeHTML(place)} · ${escapeHTML(state.mood || '心境待收藏')}</p><div>${selected.length ? selected.slice(0, 3).map(product => `<button type="button" data-product-open="${product.id}">${escapeHTML(product.title)} ↗</button>`).join('') + (selected.length > 3 ? `<span>另有 ${selected.length - 3} 件茶物</span>` : '') : '<a href="#collection">茶篓还是空的，去装一点心意 ↗</a>'}</div>`;
   }
 
@@ -96,7 +87,7 @@
     if(activeChapter===0)return `${activityHead('01 / 让七株记忆生长',`${state.seeds.length} / 7`)}<p class="task">${chapter.task}</p><div class="garden">${Array.from({length:7},(_,i)=>`<button type="button" class="seed ${state.seeds.includes(i)?'planted':''}" data-seed="${i}" aria-label="${state.seeds.includes(i)?'已种下':'种下'}第${i+1}枚茶种" aria-pressed="${state.seeds.includes(i)}"><span class="seed-sprout">${i+1}</span></button>`).join('')}</div>${activityBottom(state.seeds.length===7?'七株记忆，已在心里生根。':'轻触茶种，等待一片新绿。')}`;
     if(activeChapter===1)return `${activityHead('02 / 手心里的制茶智慧',`${state.craft.length} / 3`)}<p class="task">${chapter.task}</p><div class="craft-stage"><div class="tea-bowl ${activeCraft<0?'':`motion-${craftSteps[activeCraft].motion}`}" aria-hidden="true">${Array.from({length:8},(_,i)=>`<i style="--i:${i%5};--y:${i%3}"></i>`).join('')}</div></div><div class="craft-controls">${craftSteps.map((step,i)=>`<button type="button" data-craft="${i}" aria-pressed="${activeCraft===i}" class="craft-button ${state.craft.includes(i)?'done':''} ${activeCraft===i?'active':''}">${step.name} · ${step.label}</button>`).join('')}</div><p class="craft-info" aria-live="polite">${activeCraft<0?'从“捧”开始，看看每一种手法如何与芽叶相遇。':craftSteps[activeCraft].text}</p>${activityBottom(state.craft.length===3?'传承，在一双手与另一双手之间。':'体验三种手法，收集采制印记。')}`;
     if(activeChapter===2)return `${activityHead('03 / 点亮一条交流之路',`${state.road.length} / 4`)}<p class="task">${chapter.task}</p><div class="road-stage"><svg viewBox="0 0 500 190" preserveAspectRatio="none" aria-hidden="true"><path d="M0 169 75 102 127 145 220 67 290 108 380 20 500 75V190H0Z" fill="#e9edde"/><path d="M0 185 127 131 235 159 341 84 500 112V190Z" fill="#dce4cf"/><path d="M60 135C101 77 123 160 180 101S245 45 315 70 382 25 445 38" stroke="#b59a70" stroke-width="2" stroke-dasharray="5 6" fill="none"/></svg>${roadPoints.map((point,i)=>`<button type="button" class="road-point ${activeRoad===i?'active':''} ${state.road.includes(i)?'done':''}" data-road="${i}" style="left:${point.x}%;top:${point.y}%" aria-label="了解${point.title}" aria-pressed="${activeRoad===i}">${point.name}</button>`).join('')}</div><div class="road-info" aria-live="polite">${activeRoad<0?'轻触山路上的节点，听茶叶讲述一次远行。':`<strong>${roadPoints[activeRoad].title}</strong><br>${roadPoints[activeRoad].text}`}</div>${activityBottom('文化叙事示意 · 非导航地图')}`;
-    if(activeChapter===3)return `${activityHead('04 / 今天，在哪儿停一杯茶？',state.mood?'心境已收藏':'名山 · 五个停留点')}<p class="task">${chapter.task}</p>${cityMarkup()}<div class="moment-options">${moods.map((mood,i)=>`<button type="button" class="moment ${state.mood===mood.name?'selected':''}" data-mood="${i}" aria-pressed="${state.mood===mood.name}">${cupIcon(i)}<strong>${mood.name}</strong><span>${mood.subtitle}</span></button>`).join('')}</div><p class="moment-note" aria-live="polite">${state.mood?moods.find(m=>m.name===state.mood).line:'在匆忙的一天里，为一杯茶留个位置。'}</p>${activityBottom('你的心境，将写入今日茶路卡。')}`;
+    if(activeChapter===3)return `${activityHead('04 / 让茶回到日常',state.mood?'心境已收藏':'雅安 · 三个生活片刻')}<p class="task">${chapter.task}</p>${cityMarkup()}<div class="moment-options">${moods.map((mood,i)=>`<button type="button" class="moment ${state.mood===mood.name?'selected':''}" data-mood="${i}" aria-pressed="${state.mood===mood.name}">${cupIcon(i)}<strong>${mood.name}</strong><span>${mood.subtitle}</span></button>`).join('')}</div><p class="moment-note" aria-live="polite">${state.mood?moods.find(m=>m.name===state.mood).line:'在匆忙的一天里，为一杯茶留个位置。'}</p>${activityBottom('你的心境，将写入今日茶路卡。')}`;
     return `${activityHead('05 / 留一张自己的茶路卡','QIYE POSTCARD')}<p class="task">${chapter.task}</p><div class="basket-summary" id="basket-summary">${basketSummary()}</div><form class="share-form" id="card-form"><label for="nickname">怎样称呼你？<input id="nickname" name="nickname" maxlength="14" placeholder="茶路旅人" autocomplete="nickname" value="${escapeHTML(state.nickname)}"></label><label for="message">想把哪句话带向远方？<textarea id="message" name="message" maxlength="70" placeholder="愿你走得再远，也有一杯温热的茶。">${escapeHTML(state.message)}</textarea></label><div class="form-row"><span class="mood-chip">今日心境 · ${state.mood||'从容'}</span><span class="quiet">已收集 ${state.completed.filter(i=>i!==4).length} / 4 段故事</span></div><button class="button primary" type="submit">生成我的茶路卡 <span>↗</span></button></form><p class="form-hint">可以随时生成；走完前四章，会留下完整的旅程印记。</p>`;
   }
   function renderChapter(focus=false) {
@@ -123,7 +114,7 @@
     if(button.hasAttribute('data-seed')){const index=Number(button.dataset.seed);if(!state.seeds.includes(index)){state.seeds.push(index);if(state.seeds.length===7)complete(0);persist();refreshActivity(`[data-seed="${index}"]`);}return;}
     if(button.hasAttribute('data-craft')){activeCraft=Number(button.dataset.craft);if(!state.craft.includes(activeCraft))state.craft.push(activeCraft);if(state.craft.length===3)complete(1);persist();refreshActivity(`[data-craft="${activeCraft}"]`);return;}
     if(button.hasAttribute('data-road')){activeRoad=Number(button.dataset.road);if(!state.road.includes(activeRoad))state.road.push(activeRoad);if(state.road.length===4)complete(2);persist();refreshActivity(`[data-road="${activeRoad}"]`);return;}
-    if(button.hasAttribute('data-city')){state.cityPlace=Number(button.dataset.city);persist();refreshActivity(`[data-city="${state.cityPlace}"]`);return;}
+    if(button.hasAttribute('data-city')){state.cityMoment=Number(button.dataset.city);persist();refreshActivity(`[data-city="${state.cityMoment}"]`);return;}
     if(button.hasAttribute('data-mood')){const index=Number(button.dataset.mood);state.mood=moods[index].name;complete(3);persist();refreshActivity(`[data-mood="${index}"]`);}
   });
   $('#chapter-panel').addEventListener('submit',async event=>{
@@ -147,7 +138,7 @@
   function qrOnCanvas(context,x,y,size){const count=qr.getModuleCount(),quiet=4,total=count+quiet*2;context.fillStyle='#fff';context.fillRect(x,y,size,size);context.fillStyle='#303d30';for(let row=0;row<count;row++)for(let col=0;col<count;col++)if(qr.isDark(row,col)){const left=Math.round(x+(col+quiet)*size/total),top=Math.round(y+(row+quiet)*size/total),right=Math.round(x+(col+quiet+1)*size/total),bottom=Math.round(y+(row+quiet+1)*size/total);context.fillRect(left,top,right-left,bottom-top);}}
   function canvasBlob(canvas){return new Promise((resolve,reject)=>canvas.toBlob(blob=>blob?resolve(blob):reject(new Error('无法导出图片')),'image/png'));}
   function downloadBlob(blob,filename){const url=URL.createObjectURL(blob);const link=document.createElement('a');link.href=url;link.download=filename;document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);}
-  $('#download-qr').addEventListener('click',async()=>{try{const canvas=document.createElement('canvas');canvas.width=canvas.height=800;qrOnCanvas(canvas.getContext('2d'),0,0,800);downloadBlob(await canvasBlob(canvas),'七叶-扫码启程.png');notify('二维码已准备下载。');}catch{notify('下载暂不可用，可截图保存二维码。');}});
+  $('#download-qr').addEventListener('click',async()=>{try{const canvas=document.createElement('canvas');canvas.width=canvas.height=800;qrOnCanvas(canvas.getContext('2d'),0,0,800);downloadBlob(await canvasBlob(canvas),'七叶-雅安-GitHub扫码二维码.png');notify('二维码已准备下载。');}catch{notify('下载暂不可用，可截图保存二维码。');}});
   $('#copy-link').addEventListener('click',async()=>{try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(siteUrl);notify('茶路链接已复制。');}else{window.prompt('复制这个链接，邀请朋友同行：',siteUrl);}}catch{window.prompt('复制这个链接，邀请朋友同行：',siteUrl);}});
   function loadArt(){if(!artPromise)artPromise=new Promise((resolve,reject)=>{const image=new Image();image.onload=()=>resolve(image);image.onerror=()=>{artPromise=null;reject(new Error('角色图片加载失败'));};image.src='assets/qiye-design.png';});return artPromise;}
   function wrapText(context,text,x,y,maxWidth,lineHeight,maxLines){const lines=[];let line='';for(const char of Array.from(text.replace(/\s+/g,' '))){if(context.measureText(line+char).width>maxWidth&&line){lines.push(line);line=char;}else line+=char;}if(line)lines.push(line);lines.slice(0,maxLines).forEach((item,index)=>{let output=item;if(index===maxLines-1&&lines.length>maxLines){while(context.measureText(output+'…').width>maxWidth)output=output.slice(0,-1);output+='…';}context.fillText(output,x,y+index*lineHeight);});return Math.min(lines.length,maxLines)*lineHeight;}
@@ -157,14 +148,14 @@
     ctx.fillStyle='#f7f5ef';ctx.fillRect(0,0,900,1400);ctx.strokeStyle='#ccd4bf';ctx.lineWidth=2;ctx.strokeRect(28,28,844,1344);
     ctx.fillStyle='#728b68';ctx.font='20px sans-serif';ctx.fillText('QIYE · MY TEA JOURNEY',68,87);
     ctx.fillStyle='#303d30';ctx.font='56px "Songti SC", serif';ctx.fillText('七株茶，万里路。',64,173);
-    ctx.fillStyle='#858d76';ctx.font='20px sans-serif';ctx.fillText('世界茶源 · 蒙顶山',69,222);
+    ctx.fillStyle='#858d76';ctx.font='20px sans-serif';ctx.fillText('四川雅安 · 在山与世界之间',69,222);
     ctx.save();ctx.translate(140,240);ctx.scale(620/760,620/760);ctx.beginPath();ctx.moveTo(400,0);ctx.lineTo(760,0);ctx.lineTo(760,770);ctx.lineTo(0,770);ctx.lineTo(0,155);ctx.lineTo(400,155);ctx.closePath();ctx.clip();ctx.drawImage(image,0,0,760,770,0,0,760,770);ctx.restore();
     ctx.fillStyle='#303d30';ctx.font='30px "Songti SC", serif';ctx.fillText(`${state.nickname||'茶路旅人'} 的今日茶路`,68,936);
     ctx.fillStyle='#b58c4e';ctx.font='21px sans-serif';ctx.fillText(`今日心境 · ${state.mood||'从容'}`,69,977);
     ctx.fillStyle='#626e57';ctx.font='25px "Songti SC", serif';wrapText(ctx,state.message||'愿你走得再远，也有一杯温热的茶。',69,1030,748,40,3);
     ctx.strokeStyle='#d8ddce';ctx.beginPath();ctx.moveTo(68,1162);ctx.lineTo(832,1162);ctx.stroke();
     ctx.fillStyle='#728b68';ctx.font='17px sans-serif';ctx.fillText(`故事印记  ${state.completed.filter(i=>i!==4).length} / 4`,68,1210);
-    ctx.fillStyle='#7b846e';ctx.font='16px sans-serif';ctx.fillText(state.cityPlace>=0?`城市停留 · ${content.cityPlaces[state.cityPlace].name}`:'种下 · 采制 · 出山 · 入城 · 分享',68,1248);
+    ctx.fillStyle='#7b846e';ctx.font='16px sans-serif';ctx.fillText(state.cityMoment>=0?`今日片刻 · ${content.cityMoments[state.cityMoment].name}`:'种下 · 采制 · 出山 · 入城 · 分享',68,1248);
     const carried=window.QiyeGallery.getSelected();if(carried.length){ctx.font='15px sans-serif';ctx.fillText(`随行茶物 · ${carried[0].title}${carried.length>1?` 等${carried.length}件`:''}`,68,1278);}
     ctx.fillStyle='#303d30';ctx.font='26px "Songti SC", serif';ctx.fillText('下一站，与你。',68,1310);
     qrOnCanvas(ctx,684,1190,145);ctx.fillStyle='#7b846e';ctx.font='13px sans-serif';ctx.fillText('扫码 · 与七叶同行',691,1350);
